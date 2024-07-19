@@ -1,0 +1,50 @@
+.topnav {
+  padding-top: 40px;
+  padding-right: 50px;
+  overflow: hidden;
+  /* background-color: black; */
+  margin-left: 10px;
+  font-family: "Gill Sans", sans-serif;
+}
+.topnav a {
+  float: right;
+  color: whitesmoke;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topnav a:hover {
+  /* background-color: #fdebd0; */
+  color: orange;
+}
+.topnav a.active {
+  /* background-color: #04AA6D; */
+  color: white;
+}
+body {
+  background-color: black;
+}
+main{
+    color: whitesmoke;
+}
+#about{
+    text-align: center;
+    margin-bottom: 80px;
+}
+#about p {
+    margin: 0px 50px 0px 50px;
+}
+#beverages{
+    margin-left: 20px;
+    font-size: 25px;
+}
+#beverages p{
+    display: inline;
+}
+#beverages img{
+    /* width: 100px; */
+    /* height: 100px; */
+    float: right;
+    
+}
