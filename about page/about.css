@@ -45,7 +45,7 @@ main {
   padding-right: 15%;
   color: silver;
 }
-#beverages h3{
+#beverages h3 {
   color: whitesmoke;
 }
 #bla {
@@ -61,8 +61,8 @@ main {
   /* float: right; */
   color: silver;
 }
-#Drinks h3{
-  color:whitesmoke;
+#Drinks h3 {
+  color: whitesmoke;
 }
 #Dimg {
   margin-left: 5%;
@@ -76,7 +76,7 @@ main {
   padding-right: 10%;
   color: silver;
 }
-#workspace h3{
+#workspace h3 {
   color: whitesmoke;
 }
 #Wimg {
@@ -97,7 +97,7 @@ main {
   padding-left: 15%;
   color: silver;
 }
-#takeaway h3{
+#takeaway h3 {
   color: whitesmoke;
 }
 header {
@@ -132,3 +132,18 @@ header .content {
   letter-spacing: 0px;
   color: orange;
 }
+table {
+  color: aliceblue;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 5px;
+  margin-top: 80px;
+}
+
+th,
+td {
+  text-align: center;
+  /* padding: 10px; */
+  font-style: inherit;
+}
+
