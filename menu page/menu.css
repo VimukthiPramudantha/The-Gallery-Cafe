@@ -57,6 +57,7 @@ header .content {
   text-align: center;
   margin: 0px 250px 0px 250px;
   font-style: inherit;
+  color: whitesmoke;
 }
 #dis p {
   font-family: "Gill Sans", sans-serif;
@@ -73,26 +74,49 @@ table {
 }
 td {
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #7A8181;
   font-family: "Gill Sans", sans-serif;
 }
 th,
 td {
+  color: silver;
   padding: 10px;
 }
 h2,
 h3 {
   font-family: "Poppins", Helvetica, Arial, sans-serif;
+  color: whitesmoke ;
 }
 a {
   text-decoration: none;
-  color: black;
+  color: silver;
 }
 a:hover {
   color: orange;
 }
 .coffee {
-  display: inline-block;
-  /* align-items: center; */
-  margin: 50px 20px 0px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.c2{
+  margin: 50px 5% 0px 5%;
+  box-shadow: 6px 6px 6px 2px silver;
+  border: solid 1.5px black;
+}
+body{
+  background-color: black;
+}
+p{
+  color: silver;
+}
+.sl{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chi{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
