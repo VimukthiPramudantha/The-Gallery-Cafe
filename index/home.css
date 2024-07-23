@@ -45,31 +45,57 @@ body {
 }
 #caption {
   font-size: 28px;
-    height:50px ;
-    width: 490px;
-    text-align: inherit;
-    margin-left: 50px;
-    color: whitesmoke;
+  height: 50px;
+  width: 490px;
+  text-align: inherit;
+  margin-left: 50px;
+  color: whitesmoke;
 }
-#insidebody{
-    margin-top: 200px;
+#insidebody {
+  margin-top: 200px;
 }
-#welcome{
-    color: orange;
-    margin-left: 50px;
-    font-size: 25px;
+#welcome {
+  color: orange;
+  margin-left: 50px;
+  font-size: 25px;
 }
-#about{
-    color: orange;
-    margin-left: 120px;
-    font-size: 25px;
-    padding-top: 120px;
-    /* border: solid 1px; */
+#about {
+  color: orange;
+  margin-left: 120px;
+  font-size: 25px;
+  padding-top: 120px;
+  /* border: solid 1px; */
 }
-a{
-    text-decoration: none;
-    color: orange;
+a {
+  text-decoration: none;
+  color: orange;
 }
-a:hover{
-    color: whitesmoke;
+a:hover {
+  color: whitesmoke;
+}
+
+@media (min-width: 1920px) {
+  #insidebody {
+    margin-top: 28%;
+    margin-left: 5%;
+  }
+  .topnav {
+    padding-top: 66px;
+    padding-right: 70px;
+    margin-left: 10px;
+  }
+  .topnav a {
+    font-size: 20px;
+  }
+  #caption {
+    font-size: 28px;
+    width: 555px;
+    }
+  #captionh2 {
+    font-size: 48px;
+  }
+  #about{
+    font-size: 26px;
+    padding-top: 132px;
+  }
 }

@@ -154,3 +154,52 @@ a {
 a:hover {
   color: orange;
 }
+@media (min-width: 1920px) {
+  #beverages {
+    margin-left: 6%;
+    font-size: 29px;
+    padding-right: 27%;
+  }
+  #bla{
+    margin-bottom:100px ;
+  }
+  #imgB {
+    width: 423px;
+    height: 299px;
+  }
+  #Drinks {
+    font-size: 29px;
+    padding-left: 27%;
+    margin-right: 5%;
+  }
+  #Dimg {
+    margin-left: 6%;
+    margin-bottom: 100px;
+  }
+  #workspace {
+    font-size: 29px;
+    padding-right: 24%;
+  }
+  #Wimg {
+    margin-left: 6%;
+    margin-bottom: 130px;
+  }
+  #Timg {
+    margin-left: 6%;
+  }
+  #takeaway {
+    font-size: 29px;
+    padding-left: 27%;
+  }
+  th,
+td {
+  font-size: 25px;
+}
+#about {
+  margin-bottom: 95px;
+        margin-top: 110px;
+        font-size: 18px;
+        margin-left: 40px;
+        margin-right: 40px;
+}
+}

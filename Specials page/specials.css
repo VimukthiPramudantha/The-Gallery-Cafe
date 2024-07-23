@@ -82,7 +82,7 @@ p {
 }
 .imgAll:hover {
     transform: translateY(-6px);
-    filter: blur(2px); 
+    /* filter: blur(2px);   */
     box-shadow: 0 8px 16px silver;
 }
 #dis{
@@ -111,4 +111,8 @@ table {
   a:hover {
     color: orange;
   }
-  
+  @media (min-width: 1920px) {
+    p{
+      font-size: 20px;
+    }
+  }
