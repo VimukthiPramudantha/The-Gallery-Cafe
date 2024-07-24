@@ -72,8 +72,8 @@ header .content {
   margin-top: -13px;
 }
 #googleM {
-  width: 550px;
-  height: 550px;
+  /* width: 550px; */
+  /* height: 550px; */
 }
 #all {
   display: inline-flex;
