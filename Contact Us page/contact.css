@@ -66,19 +66,61 @@ header .content {
   font-size: 23px;
   margin-bottom: 39px;
   margin-top: 51px;
+  text-align: center;
+  width: 230px;
+  color: silver;
 }
 #map p {
   font-size: 19px;
   margin-top: -13px;
+  color: black;
+    margin-left: -1px;
 }
 #googleM {
   /* width: 550px; */
   /* height: 550px; */
+   border-left: 2px solid orange;
+   padding-left: 130px; 
 }
 #all {
   display: inline-flex;
+  /* color: whitesmoke; */
 }
 #img2 {
-  padding-left: 260px;
+  padding-left: 145px;
   margin-top: 135px;
+}
+a {
+  text-decoration: none;
+  color: silver;
+}
+a:hover {
+  color: orange;
+}
+#msgHead {
+  margin-top: 45px;
+}
+#feedback {
+  text-align: center;
+  justify-content: center;
+  margin-top: 115px;
+  margin-bottom: 150px;
+  border-top: solid 2px orange;
+}
+table {
+  color: black;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 5px;
+  margin-top: 80px;
+}
+th,
+td {
+  text-align: center;
+  /* padding: 10px; */
+  font-style: inherit;
+}
+input{
+  /* border-radius: 5%; */
+  border:solid 1px ;
 }
