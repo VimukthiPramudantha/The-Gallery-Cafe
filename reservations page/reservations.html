@@ -21,7 +21,7 @@
     <header>
       <span
         style="
-          font-size: 30px;
+          font-size: 40px;
           cursor: pointer;
           color: whitesmoke;
           margin-left: 10px;
@@ -45,30 +45,21 @@
     <main>
       <h1 id="heading">Make a Reservation</h1>
       <div id="res">
-        <img
-          src="./img/tomas-jasovsky-d5SZqLkpIrY-unsplash.jpg"
-          id="wallpepar"
-        />
+        <img src="./img/back.png" id="wallpepar" />
         <div id="input">
           <div id="in">
             <div id="border">
-              <h2>Enter Your Booking Details</h2>
-              <input type="date" placeholder="Chack In date" class="date" />
-              <input
-                type="date"
-                placeholder="Chack In date"
-                class="date"
-              /><br /><br />
-              <input
-                type="text"
-                placeholder="Select Room Type"
-                class="room"
-              /><br /><br />
-              <input type="text" placeholder="Adults" class="age" />
-              <input type="text" placeholder="child" class="age" /><br /><br />
-              <input type="text" placeholder="special Notes" class="note" />
-              <br /><br />
-              <input type="submit" name="Next" />
+              <h2>Find Table</h2>
+              <select name="People" class="box">
+                <option value="2 people">2 Peoples</option>
+                <option value="3 people">3 Peoples</option>
+                <option value="4 people">4 Peoples</option>
+                <option value="5 people">5 Peoples</option>
+                <option value="6 people">6 Peoples</option>
+              </select>
+              <input type="date" name="Date" class="box" />
+              <input type="time" name="Time" class="box" /><br /><br />
+              <button id="next">Next</button>
             </div>
           </div>
         </div>

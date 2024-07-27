@@ -1,9 +1,9 @@
 .topnav {
-  /* padding-top: 40px; */
   padding-right: 50px;
   overflow: hidden;
-  /* background-color: black; */
+
   margin-left: 10px;
+  margin-top: -15px;
   font-family: "Gill Sans", sans-serif;
 }
 .topnav a {
@@ -61,6 +61,7 @@ header .content {
   text-align: center;
   margin-top: 70px;
   margin-bottom: 55px;
+  color: whitesmoke;
 }
 #res {
   display: flex;
@@ -73,26 +74,19 @@ header .content {
   padding-left: 150px;
 }
 #in {
-  border: solid 1px black;
-}
-.date {
-  width: 200px;
-  height: 40px;
-}
-.room {
-  width: 405px;
-  height: 40px;
-}
-.age {
-  width: 200px;
-  height: 40px;
-}
-.note {
-  width: 405px;
-  height: 150px;
+  border: solid 1px whitesmoke;
 }
 #border {
   margin: 35px 25px 25px 25px;
+  color: whitesmoke;
+}
+.box {
+  width: 120px;
+  height: 45px;
+}
+#next {
+  width: 100px;
+  height: 35px;
 }
 
 .sidenav {
@@ -102,7 +96,7 @@ header .content {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: black; 
+  background-color: black;
   /* backdrop-filter: blur(10px);  */
   overflow-x: hidden;
   transition: 0.5s;
@@ -145,12 +139,11 @@ header .content {
   margin-left: 45px;
   border-radius: 100%;
 }
-#navcontent{
+#navcontent {
   margin-top: 25px;
   border-top: 2px solid orange;
   padding-top: 20px;
-
 }
-body{
-  /* background-color: black; */
+body {
+  background-color: black;
 }
