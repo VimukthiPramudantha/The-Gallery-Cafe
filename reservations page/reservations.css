@@ -75,19 +75,44 @@ header .content {
 }
 #in {
   border: solid 1px whitesmoke;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 15px;
+  margin-left: 45px;
 }
+
 #border {
-  margin: 35px 25px 25px 25px;
-  color: whitesmoke;
+  padding: 40px;
+  /* background: rgba(0, 0, 0, 0.5);  */
+  border-radius: 10px;
+  color: orange;
 }
+
 .box {
-  width: 120px;
-  height: 45px;
+  display: block;
+  width: calc(100% - 2px);
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
+
 #next {
-  width: 100px;
-  height: 35px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #f7aa05;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  /* margin-top: -15px; */
 }
+
 
 .sidenav {
   height: 100%;
@@ -146,4 +171,24 @@ header .content {
 }
 body {
   background-color: black;
+}
+table {
+  color: aliceblue;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 5px;
+  margin-top: 80px;
+}
+th,
+td {
+  text-align: center;
+  /* padding: 10px; */
+  font-style: inherit;
+}
+a {
+  text-decoration: none;
+  color: silver;
+}
+a:hover {
+  color: orange;
 }
