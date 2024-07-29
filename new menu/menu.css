@@ -1,0 +1,170 @@
+.topnav {
+  padding-top: 40px;
+  padding-right: 50px;
+  overflow: hidden;
+  /* background-color: black; */
+  margin-left: 10px;
+  font-family: "Gill Sans", sans-serif;
+}
+.topnav a {
+  float: right;
+  color: whitesmoke;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topnav a:hover {
+  /* background-color: #fdebd0; */
+  color: orange;
+}
+.topnav a.active {
+  /* background-color: #04AA6D; */
+  color: white;
+}
+header {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+}
+header::before {
+  content: "";
+  background-image: url(./img/katarzyna-grabowska-Hnkus7qNbE4-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
+  z-index: -1;
+}
+header .content {
+  position: relative;
+  z-index: 1;
+}
+#hAbout {
+  text-align: center;
+  font-size: 65px;
+  line-height: 65px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  color: orange;
+  
+}
+#dis {
+  text-align: center;
+  margin: 0px 250px 0px 250px;
+  font-style: inherit;
+  color: whitesmoke;
+}
+#dis p {
+  font-family: "Gill Sans", sans-serif;
+  color: #7f8c8d;
+}
+#dis h1 {
+  margin-top: 8%;
+}
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-left: 1%;
+}
+td {
+  padding: 10px;
+  border-bottom: 1px solid #7A8181;
+  font-family: "Gill Sans", sans-serif;
+}
+th,
+td {
+  color: silver;
+  padding: 10px;
+}
+h2,
+h3 {
+  font-family: "Poppins", Helvetica, Arial, sans-serif;
+  color: whitesmoke ;
+}
+a {
+  text-decoration: none;
+  color: silver;
+}
+a:hover {
+  color: orange;
+}
+.coffee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.c2{
+  margin: 50px 5% 0px 5%;
+  box-shadow: 6px 6px 6px 2px silver;
+  border: solid 1.5px black;
+}
+body{
+  background-color: black;
+}
+p{
+  color: silver;
+}
+.sl{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chi{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#Container {
+  width: 90%;
+  padding: 20px;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.box {
+  width: 250px;
+  margin: 0 20px;
+  box-shadow: 5px 5px 15px 2px wheat;
+  transition: 0.5s;
+  border-radius: 25px;
+  position: relative; /* Ensure text is positioned relative to the box */
+}
+
+.box img {
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.box p {
+  position: absolute; /* Position text absolutely within .box */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%) scale(0); /* Start with text hidden and not scaled */
+  color: orange; /* Adjust color for better visibility */
+  font-size: 24px; /* Adjust font size for larger text */
+  background: rgba(0, 0, 0, 0.5); /* Optional: add background for readability */
+  padding: 10px; /* Increase padding to make text more prominent */
+  border-radius: 5px; /* Optional: add border radius for a rounded effect */
+  text-align: center; /* Center text inside the p element */
+  transition: transform 0.3s; /* Smooth transition for hover effect */
+}
+
+.box:hover {
+  transform: scale(1.3);
+  z-index: 2;
+  box-shadow: 6px 6px 20px 6px orange;
+}
+
+.box:hover p {
+  transform: translate(-50%, -50%) scale(1); /* Show and scale up text on hover */
+}
