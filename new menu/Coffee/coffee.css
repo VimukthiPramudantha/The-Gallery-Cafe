@@ -57,20 +57,87 @@ body {
   background-color: black;
 }
 
-#dis{
+.dis {
   background-color: white;
-  width: 275px;
+  width: 204px;
+  height: 260px;
   margin-left: 50px;
   transition: 0.5s;
   border-radius: 25px;
-  position: relative; 
+  position: relative;
+  padding-bottom: 16px;
 }
-#dis img{
+.dis img {
   margin-left: 28px;
 }
-#dis:hover{
+.dis:hover {
   transform: scale(1.3);
   z-index: 1;
-  width: 500px;
-  height: 300px;
+  width: 450px;
+  height: 250px;
+  background-color: silver;
+}
+.h2 {
+  margin-left: 27px;
+  padding-top: 17px;
+}
+.image {
+  width: 140px;
+}
+.add {
+  margin-top: 10px;
+  margin-left: 27px;
+}
+.dis p {
+  margin: 0;
+  /* color: transparent; */
+  display: none;
+}
+.dis:hover .add {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+.dis:hover p {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  color: black;
+  width: 242px;
+  padding-top: 52px;
+  display: block;
+} 
+#items{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 70px;
+}
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-left: 1%;
+}
+td {
+  padding: 10px;
+  border-bottom: 1px solid black;
+  font-family: "Gill Sans", sans-serif;
+}
+th,
+td {
+  color: silver;
+  padding: 10px;
+}
+
+h3 {
+  font-family: "Poppins", Helvetica, Arial, sans-serif;
+  color: whitesmoke ;
+}
+a {
+  text-decoration: none;
+  color: silver;
+}
+a:hover {
+  color: orange;
 }
