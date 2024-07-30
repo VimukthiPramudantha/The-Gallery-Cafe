@@ -131,12 +131,12 @@ p{
 }
 
 .box {
-  width: 250px;
+  width: 160px;
   margin: 0 20px;
   box-shadow: 5px 5px 15px 2px wheat;
   transition: 0.5s;
   border-radius: 25px;
-  position: relative; /* Ensure text is positioned relative to the box */
+  position: relative; 
 }
 
 .box img {
@@ -146,25 +146,25 @@ p{
 }
 
 .box p {
-  position: absolute; /* Position text absolutely within .box */
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
+  position: absolute; 
+  top: 50%; 
+  left: 50%;
   transform: translate(-50%, -50%) scale(0); /* Start with text hidden and not scaled */
-  color: orange; /* Adjust color for better visibility */
-  font-size: 24px; /* Adjust font size for larger text */
+  color: orange; 
+  font-size: 24px;
   background: rgba(0, 0, 0, 0.5); /* Optional: add background for readability */
-  padding: 10px; /* Increase padding to make text more prominent */
-  border-radius: 5px; /* Optional: add border radius for a rounded effect */
-  text-align: center; /* Center text inside the p element */
-  transition: transform 0.3s; /* Smooth transition for hover effect */
+  padding: 10px; 
+  border-radius: 5px; 
+  text-align: center;
+  transition: transform 0.3s; 
 }
 
 .box:hover {
   transform: scale(1.3);
   z-index: 2;
-  box-shadow: 6px 6px 20px 6px orange;
+  box-shadow: 0px 0px 5px 2px white;
 }
 
 .box:hover p {
-  transform: translate(-50%, -50%) scale(1); /* Show and scale up text on hover */
+  transform: translate(-50%, -50%) scale(1);
 }
