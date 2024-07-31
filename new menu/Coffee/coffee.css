@@ -66,6 +66,7 @@ body {
   border-radius: 25px;
   position: relative;
   padding-bottom: 16px;
+  margin-bottom: 75px;
 }
 .dis img {
   margin-left: 28px;
@@ -140,4 +141,13 @@ a {
 }
 a:hover {
   color: orange;
+}
+#selecttion{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: center;
+  margin-left: 220px;
+    margin-right: 225px;
+
 }

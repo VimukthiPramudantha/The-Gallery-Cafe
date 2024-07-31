@@ -29,7 +29,7 @@
   }
   header::before {
     content: "";
-    background-image: url(./img/clementina-toso-vqqsuCkHUM4-unsplash.jpg);
+    background-image: url(./img/jack-shingai-hdhWH1xoYwM-unsplash.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
@@ -52,7 +52,9 @@
     font-weight: 500;
     letter-spacing: 0px;
     color: orange;
+    
   }
+  
   body {
     background-color: black;
   }
@@ -65,7 +67,7 @@
     transition: 0.5s;
     border-radius: 25px;
     position: relative;
-    padding-bottom: 16px;
+    padding-bottom: 42px;
   }
   .dis img {
     margin-left: 28px;
@@ -106,6 +108,7 @@
     width: 242px;
     padding-top: 52px;
     display: block;
+    margin-top: 10px;
   } 
   #items{
     display: flex;

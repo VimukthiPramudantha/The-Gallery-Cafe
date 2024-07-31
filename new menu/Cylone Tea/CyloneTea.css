@@ -29,7 +29,7 @@
   }
   header::before {
     content: "";
-    background-image: url(./img/clementina-toso-vqqsuCkHUM4-unsplash.jpg);
+    background-image: url(./img/debby-hudson-FO4gzqI2t84-unsplash.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
@@ -66,6 +66,7 @@
     border-radius: 25px;
     position: relative;
     padding-bottom: 16px;
+    margin-bottom: 75px;
   }
   .dis img {
     margin-left: 28px;
@@ -85,7 +86,7 @@
     width: 140px;
   }
   .add {
-    margin-top: 14px;
+    margin-top: 10px;
     margin-left: 27px;
   }
   .dis p {
@@ -140,4 +141,13 @@
   }
   a:hover {
     color: orange;
+  }
+  #selecttion{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    justify-content: center;
+    margin-left: 220px;
+      margin-right: 225px;
+  
   }
