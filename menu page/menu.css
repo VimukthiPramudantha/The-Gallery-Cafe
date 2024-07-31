@@ -52,6 +52,7 @@ header .content {
   font-weight: 500;
   letter-spacing: 0px;
   color: orange;
+  
 }
 #dis {
   text-align: center;
@@ -119,4 +120,54 @@ p{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+#Container {
+  width: 90%;
+  padding: 20px;
+  margin: 60px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
+.box {
+  width: 160px;
+  margin: 0 20px;
+  /* box-shadow: 5px 5px 15px 2px wheat; */
+  transition: 0.5s;
+  border-radius: 25px;
+  position: relative; 
+  /* border: solid 1px white; */
+}
+
+.box img {
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.box p {
+  position: absolute; 
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0); /* Start with text hidden and not scaled */
+  color: orange; 
+  font-size: 24px;
+  background: rgba(0, 0, 0, 0.5); /* Optional: add background for readability */
+  padding: 10px; 
+  border-radius: 5px; 
+  text-align: center;
+  transition: transform 0.3s; 
+}
+
+.box:hover {
+  transform: scale(1.3);
+  z-index: 2;
+  box-shadow: 5px 5px 15px 2px wheat;
+  border: none;
+}
+
+.box:hover p {
+  transform: translate(-50%, -50%) scale(1);
 }
