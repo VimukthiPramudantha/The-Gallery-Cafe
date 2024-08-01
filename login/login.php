@@ -70,7 +70,7 @@ mysqli_close($conn);
             </div>
             <button type="submit" class="btn">Login</button>
             <div class="registerlink">
-                <p>Don't have an account? <a href="./new/register.php">Register</a></p>
+                <br></br><p>Don't have an account? <a href="./new/register.php">Register</a></p>
             </div>
         </form>
     </div>

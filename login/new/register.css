@@ -9,7 +9,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: url(./img/adriaan-venner-scheepers-3DxEqSlrwsg-unsplash.jpg);
+    background-image: url(./img/chetan-hireholi-WOQCwfnlhcs-unsplash.jpg);
     background-size: cover;
     background-position: center;
 }
@@ -17,7 +17,7 @@ body{
     width: 420px;
     background: transparent;
     border: 2px solid rgba(255, 255,255, .2);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     color: white;
     border-radius: 12px;
     padding: 30px 40px; 
@@ -32,7 +32,7 @@ body{
     width: 100%;
     height: 50px;
     /* background: yellow; */
-    margin: 30px 0;
+    margin: 23px 0;
 }
 .inputBox input{
     width: 100%;
@@ -92,12 +92,23 @@ body{
     margin-top: 20px 0 15px; 
 
 }
-.registerlink p a{
+.registerlink  p{
     color: white;
     text-decoration: none;
     font-weight: 600;
     /* padding-top: 10px; */
 }
+.registerlink  a{
+    color: orange;
+    text-decoration: none;
+    font-weight: 600;
+    /* padding-top: 10px; */
+}
+.registerlink  a:hover{
+    text-decoration: underline;
+    color: white;    
+}
 .registerlink p a:hover{
-    text-decoration: underline;    
+    text-decoration: underline;
+    /* color: white;     */
 }

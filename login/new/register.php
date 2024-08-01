@@ -74,36 +74,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Register</title>
-    <link rel="stylesheet" href="./loging.css">
+    <title>The Gallery Cafe - Register</title>
+    <link rel="stylesheet" href="./register.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <h2>Register</h2>
+    <div class="wrapper">
+    
     <?php if (!empty($message)) { echo '<div style="color: red;">' . $message . '</div>'; } ?>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <div>
+    <h1>Register</h1>    
+        <div class="inputBox">
             <input type="text" name="firstName" placeholder="First Name" id="firstName" value="<?php echo htmlspecialchars($firstName); ?>" required>
+            <i class='bx bx-user-circle'></i>
             <span style="color: red;"><?php echo $firstName_err; ?></span><br>
         </div>
-        <div>
+        <div class="inputBox">
             <input type="text" name="lastName" placeholder="Last Name" id="lastName" value="<?php echo htmlspecialchars($lastName); ?>" required>
+            <i class='bx bx-user-circle'></i>
             <span style="color: red;"><?php echo $lastName_err; ?></span><br>
         </div>
-        <div>
+        <div class="inputBox">
             <input type="text" name="username" placeholder="Username" id="username" value="<?php echo htmlspecialchars($username); ?>" required>
+            <i class='bx bxs-user-pin' ></i>
             <span style="color: red;"><?php echo $username_err; ?></span><br>
         </div>
-        <div>
+        <div class="inputBox">
             <input type="text" name="email" placeholder="Email" id="email" value="<?php echo htmlspecialchars($email); ?>" required>
+            <i class='bx bx-envelope'></i>
             <span style="color: red;"><?php echo $email_err; ?></span><br>
         </div>
-        <div>
+        <div class="inputBox">
             <input type="password" name="password" placeholder="Password" id="password" required>
+            <i class='bx bx-lock-open-alt'></i>
             <span style="color: red;"><?php echo $password_err; ?></span><br><br>
         </div>
         <div>
-            <input type="submit" value="Register">
+            <input type="submit" value="Register" class="btn">
         </div>
+        <div class="registerlink">
+                <br></br><p>Already Have An  <a href="../login.php" style="color:orange">Account</a></p>
+            </div>
     </form>
+
+    </div>
 </body>
 </html>
