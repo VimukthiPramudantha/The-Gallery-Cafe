@@ -43,6 +43,23 @@ body {
   /* background-color: #04AA6D; */
   color: white;
 }
+.topnav i {
+  font-size: 20px; /* Adjust size */
+  vertical-align: middle; /* Align with text */
+  margin-left: 20px; /* Space between other links */
+  color: orange; /* Icon color */
+}
+.topnav i:hover {
+  color: whitesmoke; /* Color on hover */
+}
+
+.login-icon {
+  width: 24px; /* Adjust size as needed */
+  height: 24px; /* Adjust size as needed */
+  vertical-align: middle; /* Align with text */
+  margin-left: 20px; /* Space between other links */
+}
+
 #caption {
   font-size: 28px;
   height: 50px;
