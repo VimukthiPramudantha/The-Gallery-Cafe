@@ -26,7 +26,7 @@ header {
 }
 header::before {
   content: "";
-  background-image: url(./img/debby-hudson-FO4gzqI2t84-unsplash.jpg);
+  background-image: url(./img/nathan-dumlao-YUzSjKG9QmU-unsplash.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
@@ -103,7 +103,7 @@ body {
   width: 242px;
   padding-top: 52px;
   display: block;
-} 
+}
 #items {
   display: flex;
   flex-direction: row;
@@ -137,7 +137,7 @@ td {
 
 h3 {
   font-family: "Poppins", Helvetica, Arial, sans-serif;
-  color: whitesmoke ;
+  color: whitesmoke;
 }
 a {
   text-decoration: none;
