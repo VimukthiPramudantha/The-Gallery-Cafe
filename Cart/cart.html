@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="topnav">
+        <a href="../index/Home.html" class="navbar">Home</a>
+        <a href="../menu page/menu.html" class="navbar" style="color: orange"
+          >Menu</a
+        >
+        <a href="../Specials page/specials.html" class="navbar">Specials</a>
+        <a href="../reservations page/reservations.php" class="navbar"
+          >Reservations</a
+        >
+        <a href="../Contact Us page/contact.php" class="navbar">Contact Us</a>
+      </div>
+      <div id="hAbout">
+        <h1>Cart</h1>
+      </div>
+    </header>
+    <div class="cart-container">
+      <h1>Menu Cart</h1>
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="cart-items">
+          <!-- Items will be dynamically inserted here -->
+        </tbody>
+      </table>
+      <div class="cart-summary">
+        <h2>Cart Summary</h2>
+        <p>Total Items: <span id="total-items">0</span></p>
+        <p>Total Price: $<span id="total-price">0.00</span></p>
+        <button id="checkout">Proceed to Checkout</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

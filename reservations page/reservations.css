@@ -1,9 +1,12 @@
+body {
+  background-color: black;
+}
 .topnav {
+  padding-top: 40px;
   padding-right: 50px;
   overflow: hidden;
-
+  /* background-color: black; */
   margin-left: 10px;
-  margin-top: -15px;
   font-family: "Gill Sans", sans-serif;
 }
 .topnav a {
