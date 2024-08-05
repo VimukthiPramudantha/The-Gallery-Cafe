@@ -1,36 +1,37 @@
 <?php
+// Database connection parameters
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "gallery_cafe";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
 // Handle Confirm Action
 if (isset($_POST['confirm'])) {
-    $reservation_id = $_POST['reservation_id'];
+    $reservation_id = (int)$_POST['reservation_id'];
     $sql = "UPDATE reservation_details SET status = 'Confirmed' WHERE id = $reservation_id";
-    if ($conn->query($sql) === TRUE) {
+    if (mysqli_query($conn, $sql)) {
         echo "<p>Status updated to Confirmed.</p>";
     } else {
-        echo "<p>Error updating status: " . $conn->error . "</p>";
+        echo "<p>Error updating status: " . mysqli_error($conn) . "</p>";
     }
 }
 
 // Handle Delete Action
 if (isset($_POST['delete'])) {
-    $reservation_id = $_POST['reservation_id'];
+    $reservation_id = (int)$_POST['reservation_id'];
     $sql = "DELETE FROM reservation_details WHERE id = $reservation_id";
-    if ($conn->query($sql) === TRUE) {
+    if (mysqli_query($conn, $sql)) {
         echo "<p>Reservation deleted successfully.</p>";
     } else {
-        echo "<p>Error deleting reservation: " . $conn->error . "</p>";
+        echo "<p>Error deleting reservation: " . mysqli_error($conn) . "</p>";
     }
 }
 
@@ -38,17 +39,19 @@ if (isset($_POST['delete'])) {
 $sql = "SELECT r.*, t.num_of_people, t.date AS table_date, t.time AS table_time
         FROM reservation_details r
         JOIN find_table t ON r.table_id = t.id";
-$result = $conn->query($sql);
+$result = mysqli_query($conn, $sql);
 
 $reservations = [];
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
         $reservations[] = $row;
     }
 }
 
-$conn->close();
+// Close the connection
+mysqli_close($conn);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

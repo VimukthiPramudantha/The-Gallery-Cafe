@@ -1,35 +1,40 @@
 <?php
+session_start();
+
+// Database connection details
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "admin_dashboard";
+$dbname = "gallery_cafe";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
-// Fetch admin profile details (assuming there's only one admin for simplicity)
-$sql = "SELECT * FROM admin_profile WHERE id=1"; // Update the query based on your database schema
-$result = $conn->query($sql);
+// Check if admin ID is set in the session
+if (!isset($_SESSION['user_id'])) {
+    die("Admin ID not found in session.");
+}
+
+$admin_id =  $_SESSION['user_id'];
+
+// Fetch admin profile details
+$sql = "SELECT * FROM users WHERE id=$admin_id";
+$result = mysqli_query($conn, $sql);
 
 $profile = [];
-if ($result->num_rows > 0) {
-    $profile = $result->fetch_assoc();
+if (mysqli_num_rows($result) > 0) {
+    $profile = mysqli_fetch_assoc($result);
+} else {
+    die("No profile found for admin ID: " . $admin_id);
 }
 
-$conn->close();
+mysqli_close($conn);
 ?>
-
-<div class="profile-details">
-    <img src="uploads/<?php echo $profile['profile_pic']; ?>" alt="Profile Picture">
-    <h2><?php echo $profile['username']; ?></h2>
-    <p>Full Name: <?php echo $profile['full_name']; ?></p>
-</div>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +51,7 @@ $conn->close();
             <ul>
                 <li><a href="index.html">Dashboard</a></li>
                 <li><a href="promotions.html">Promotions</a></li>
-                <li><a href="profile.html" class="active">Profile</a></li>
+                <li><a href="profile.php" class="active">Profile</a></li>
                 <li><a href="logout.php">Logout</a></li>
             </ul>
         </nav>
@@ -56,7 +61,7 @@ $conn->close();
             <ul>
                 <li><a href="index.html">Dashboard</a></li>
                 <li><a href="promotions.html">Promotions</a></li>
-                <li><a href="profile.html" class="active">Profile</a></li>
+                <li><a href="profile.php" class="active">Profile</a></li>
                 <li><a href="logout.php">Logout</a></li>
             </ul>
         </aside>
@@ -65,7 +70,11 @@ $conn->close();
                 <h1>Profile</h1>
             </div>
             <section class="profile-details">
-                <?php include 'profile.php'; ?>
+                <div class="profile-details">
+                  
+                    <h2><?php echo htmlspecialchars($profile['username']); ?></h2>
+                    <p>Full Name: <?php echo htmlspecialchars($profile['firstName']); ?></p>
+                </div>
             </section>
         </main>
     </div>

@@ -1,3 +1,67 @@
+<?php
+// Database connection parameters
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "gallery_cafe";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get form inputs
+    $item_name = mysqli_real_escape_string($conn, $_POST['item_name']);
+    $item_description = mysqli_real_escape_string($conn, $_POST['item_description']);
+    $item_price = mysqli_real_escape_string($conn, $_POST['item_price']);
+    $item_category = mysqli_real_escape_string($conn, $_POST['item_category']);
+
+    // Handle file upload
+    $item_image = '';
+    if (isset($_FILES['item_image']) && $_FILES['item_image']['error'] === UPLOAD_ERR_OK) {
+        $file_tmp = $_FILES['item_image']['tmp_name'];
+        $file_name = $_FILES['item_image']['name'];
+        $file_size = $_FILES['item_image']['size'];
+        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+
+        $allowed_exts = ['jpg', 'jpeg', 'png', 'gif'];
+        if (in_array($file_ext, $allowed_exts)) {
+            $new_file_name = uniqid('', true) . '.' . $file_ext;
+            $upload_dir = 'uploads/';
+            if (!is_dir($upload_dir)) {
+                mkdir($upload_dir, 0777, true);
+            }
+            $upload_file = $upload_dir . $new_file_name;
+            if (move_uploaded_file($file_tmp, $upload_file)) {
+                $item_image = $new_file_name;
+            } else {
+                echo "<p>Error uploading image.</p>";
+                exit;
+            }
+        } else {
+            echo "<p>Invalid file type.</p>";
+            exit;
+        }
+    }
+
+    // Prepare SQL query
+    $sql = "INSERT INTO menu_item (name, description, price, category_name, image) 
+            VALUES ('$item_name', '$item_description', '$item_price', '$item_category', '$item_image')";
+
+    if (mysqli_query($conn, $sql)) {
+        echo "<p>New menu item added successfully.</p>";
+    } else {
+        echo "<p>Error: " . $sql . "<br>" . mysqli_error($conn) . "</p>";
+    }
+
+    mysqli_close($conn);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,74 +94,7 @@
         <main>
             <div class="add-menu-container">
                 <h1>Add New Menu Item</h1>
-                <?php
-                // Database connection parameters
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "admin_dashboard";
-
-                // Create connection
-                $conn = new mysqli($servername, $username, $password, $dbname);
-
-                // Check connection
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-
-                // Handle form submission
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    // Get form inputs
-                    $item_name = $_POST['item_name'];
-                    $item_description = $_POST['item_description'];
-                    $item_price = $_POST['item_price'];
-                    $item_category = $_POST['item_category'];
-
-                    // Handle file upload
-                    $item_image = '';
-                    if (isset($_FILES['item_image']) && $_FILES['item_image']['error'] === UPLOAD_ERR_OK) {
-                        $file_tmp = $_FILES['item_image']['tmp_name'];
-                        $file_name = $_FILES['item_image']['name'];
-                        $file_size = $_FILES['item_image']['size'];
-                        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-
-                        $allowed_exts = ['jpg', 'jpeg', 'png', 'gif'];
-                        if (in_array($file_ext, $allowed_exts)) {
-                            $new_file_name = uniqid('', true) . '.' . $file_ext;
-                            $upload_dir = 'uploads/';
-                            if (!is_dir($upload_dir)) {
-                                mkdir($upload_dir, 0777, true);
-                            }
-                            $upload_file = $upload_dir . $new_file_name;
-                            if (move_uploaded_file($file_tmp, $upload_file)) {
-                                $item_image = $new_file_name;
-                            } else {
-                                echo "<p>Error uploading image.</p>";
-                                exit;
-                            }
-                        } else {
-                            echo "<p>Invalid file type.</p>";
-                            exit;
-                        }
-                    } else {
-                        echo "<p>No image uploaded or error occurred.</p>";
-                        exit;
-                    }
-
-                    // Prepare SQL query
-                    $sql = "INSERT INTO menu_items (name, description, price, category, image) 
-                            VALUES ('$item_name', '$item_description', '$item_price', '$item_category', '$item_image')";
-
-                    if ($conn->query($sql) === TRUE) {
-                        echo "<p>New menu item added successfully.</p>";
-                    } else {
-                        echo "<p>Error: " . $sql . "<br>" . $conn->error . "</p>";
-                    }
-
-                    $conn->close();
-                }
-                ?>
-                <form action="add-menu-item.php" method="POST" enctype="multipart/form-data">
+                <form action="" method="POST" enctype="multipart/form-data">
                     <label for="item-name">Item Name:</label>
                     <input type="text" id="item-name" name="item_name" required>
 
@@ -119,7 +116,7 @@
                     </select>
 
                     <label for="item-image">Upload Image:</label>
-                    <input type="file" id="item-image" name="item_image" accept="image/*" required>
+                    <input type="file" id="item-image" name="item_image" accept="image/*">
 
                     <button type="submit" class="submit-btn">Add Item</button>
                 </form>

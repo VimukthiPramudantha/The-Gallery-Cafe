@@ -1,41 +1,57 @@
 <?php
-// Database connection settings
+// Database connection parameters
 $servername = "localhost";
-$username = "your_username";
-$password = "your_password";
-$dbname = "your_database";
+$username = "root";
+$password = "";
+$dbname = "gallery_cafe";
 
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
-    // Handle confirm action
-    if (isset($_POST['confirm'])) {
-        $id = $_POST['reservation_id'];
-        $stmt = $conn->prepare("UPDATE reservations SET status = 'Confirmed' WHERE id = :id");
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-    }
-
-    // Handle delete action
-    if (isset($_POST['delete'])) {
-        $id = $_POST['reservation_id'];
-        $stmt = $conn->prepare("DELETE FROM reservations WHERE id = :id");
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-    }
-
-    // Fetch all reservations
-    $stmt = $conn->prepare("SELECT * FROM reservations");
-    $stmt->execute();
-    $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-} catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
-$conn = null;
+// Handle Confirm Action
+if (isset($_POST['confirm'])) {
+    $reservation_id = (int)$_POST['reservation_id'];
+    $sql = "UPDATE reservation_details SET status = 'Confirmed' WHERE id = $reservation_id";
+    if (mysqli_query($conn, $sql)) {
+        echo "<p>Status updated to Confirmed.</p>";
+    } else {
+        echo "<p>Error updating status: " . mysqli_error($conn) . "</p>";
+    }
+}
+
+// Handle Delete Action
+if (isset($_POST['delete'])) {
+    $reservation_id = (int)$_POST['reservation_id'];
+    $sql = "DELETE FROM reservation_details WHERE id = $reservation_id";
+    if (mysqli_query($conn, $sql)) {
+        echo "<p>Reservation deleted successfully.</p>";
+    } else {
+        echo "<p>Error deleting reservation: " . mysqli_error($conn) . "</p>";
+    }
+}
+
+// Fetch all reservations with table details
+$sql = "SELECT r.*, t.num_of_people, t.date AS table_date, t.time AS table_time
+        FROM reservation_details r
+        JOIN find_table t ON r.table_id = t.id";
+$result = mysqli_query($conn, $sql);
+
+$reservations = [];
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $reservations[] = $row;
+    }
+}
+
+// Close the connection
+mysqli_close($conn);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +90,6 @@ $conn = null;
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Phone</th>
                             <th>Date</th>
                             <th>Time</th>
                             <th>Guests</th>
@@ -87,20 +102,20 @@ $conn = null;
                         <tr>
                             <td><?php echo htmlspecialchars($reservation['name']); ?></td>
                             <td><?php echo htmlspecialchars($reservation['email']); ?></td>
-                            <td><?php echo htmlspecialchars($reservation['phone']); ?></td>
-                            <td><?php echo htmlspecialchars($reservation['date']); ?></td>
-                            <td><?php echo htmlspecialchars($reservation['time']); ?></td>
-                            <td><?php echo htmlspecialchars($reservation['guests']); ?></td>
+                            <td><?php echo htmlspecialchars($reservation['table_date']); ?></td>
+                            <td><?php echo htmlspecialchars($reservation['table_time']); ?></td>
+                            <td><?php echo htmlspecialchars($reservation['num_of_people']); ?></td>
                             <td><?php echo htmlspecialchars($reservation['status']); ?></td>
                             <td>
-                                <form method="POST" action="view-reservations.php" style="display:inline;">
-                                    <input type="hidden" name="reservation_id" value="<?php echo $reservation['id']; ?>">
-                                    <button type="submit" name="confirm" class="confirm-button">Confirm</button>
-                                </form>
-                                <form method="POST" action="view-reservations.php" style="display:inline;">
-                                    <input type="hidden" name="reservation_id" value="<?php echo $reservation['id']; ?>">
-                                    <button type="submit" name="delete" class="delete-button">Delete</button>
-                                </form>
+                            <form method="POST" action="confirm-reservation.php" style="display:inline;">
+    <input type="hidden" name="reservation_id" value="<?php echo $reservation['id']; ?>">
+    <button type="submit" name="confirm" class="confirm-button">Confirm</button>
+</form>
+
+<form method="POST" action="cancel-reservation.php" style="display:inline;">
+    <input type="hidden" name="reservation_id" value="<?php echo $reservation['id']; ?>">
+    <button type="submit" name="cancel" class="cancel-button">Cancel</button>
+</form>
                             </td>
                         </tr>
                         <?php endforeach; ?>

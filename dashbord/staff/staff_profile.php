@@ -8,71 +8,22 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Database connection settings
-$servername = "localhost";
-$username = "your_username";
-$password = "your_password";
-$dbname = "your_database";
+include('../../dataBaseConnection.php');
 
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// Fetch user details
+$user_id = $_SESSION['user_id'];
 
-    $userId = $_SESSION['user_id'];
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
-        $currentPassword = $_POST['current-password'];
-        $newPassword = $_POST['new-password'];
-        $confirmPassword = $_POST['confirm-password'];
-
-        // Update profile picture logic here if necessary
-
-        // Update name
-        $stmt = $conn->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname WHERE id = :id");
-        $stmt->bindParam(':firstname', $firstname);
-        $stmt->bindParam(':lastname', $lastname);
-        $stmt->bindParam(':id', $userId);
-        $stmt->execute();
-
-        // Check and update password
-        if (!empty($currentPassword) && !empty($newPassword) && !empty($confirmPassword)) {
-            // Fetch current password from the database
-            $stmt = $conn->prepare("SELECT password FROM users WHERE id = :id");
-            $stmt->bindParam(':id', $userId);
-            $stmt->execute();
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if (password_verify($currentPassword, $user['password'])) {
-                if ($newPassword === $confirmPassword) {
-                    $hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
-                    $stmt = $conn->prepare("UPDATE users SET password = :password WHERE id = :id");
-                    $stmt->bindParam(':password', $hashedPassword);
-                    $stmt->bindParam(':id', $userId);
-                    $stmt->execute();
-                } else {
-                    $error = "New passwords do not match.";
-                }
-            } else {
-                $error = "Current password is incorrect.";
-            }
-        }
-
-        header('Location: staff-profile.php');
-        exit();
-    }
-
-    // Fetch user details
-    $stmt = $conn->prepare("SELECT username, firstname, lastname FROM users WHERE id = :id");
-    $stmt->bindParam(':id', $userId);
-    $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-} catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
+$sql = "SELECT username, firstname, lastname FROM users WHERE id = ?";
+if ($stmt = mysqli_prepare($conn, $sql)) {
+    mysqli_stmt_bind_param($stmt, "i", $user_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $username, $firstname, $lastname);
+    mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
 }
 
-$conn = null;
+// Close database connection
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -107,22 +58,18 @@ $conn = null;
         <main>
             <div class="profile-container">
                 <h1>My Profile</h1>
-                <div class="profile-pic">
-                    <img src="profile-pic.jpg" alt="Profile Picture">
-                    <button class="upload-button">Upload New Picture</button>
-                </div>
                 <form action="update-profile.php" method="POST">
                     <div class="form-group">
                         <label for="username">Username:</label>
-                        <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($user['username']); ?>" readonly>
+                        <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username, ENT_QUOTES, 'UTF-8'); ?>" readonly>
                     </div>
                     <div class="form-group">
                         <label for="firstname">First Name:</label>
-                        <input type="text" id="firstname" name="firstname" value="<?php echo htmlspecialchars($user['firstname']); ?>">
+                        <input type="text" id="firstname" name="firstname" value="<?php echo htmlspecialchars($firstname, ENT_QUOTES, 'UTF-8'); ?>">
                     </div>
                     <div class="form-group">
                         <label for="lastname">Last Name:</label>
-                        <input type="text" id="lastname" name="lastname" value="<?php echo htmlspecialchars($user['lastname']); ?>">
+                        <input type="text" id="lastname" name="lastname" value="<?php echo htmlspecialchars($lastname, ENT_QUOTES, 'UTF-8'); ?>">
                     </div>
                     <div class="form-group">
                         <label for="current-password">Current Password:</label>
@@ -138,8 +85,8 @@ $conn = null;
                     </div>
                     <button type="submit" class="save-button">Save Changes</button>
                 </form>
-                <?php if (isset($error)): ?>
-                    <p class="error"><?php echo $error; ?></p>
+                <?php if (isset($error) && !empty($error)): ?>
+                    <p class="error"><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></p>
                 <?php endif; ?>
             </div>
         </main>

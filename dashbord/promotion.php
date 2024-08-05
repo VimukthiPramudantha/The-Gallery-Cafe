@@ -5,56 +5,57 @@ $password = "";
 $dbname = "gallery_cafe";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
 // Handle add/edit promotion
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $description = $_POST['description'];
-    $status = $_POST['status'];
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $description = mysqli_real_escape_string($conn, $_POST['description']);
+    $status = mysqli_real_escape_string($conn, $_POST['status']);
     $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
 
     if (isset($_POST['id']) && !empty($_POST['id'])) {
-        $id = $_POST['id'];
+        $id = mysqli_real_escape_string($conn, $_POST['id']);
         $sql = "UPDATE promotions SET name='$name', description='$description', status='$status', image='$image' WHERE id=$id";
     } else {
         $sql = "INSERT INTO promotions (name, description, status, image) VALUES ('$name', '$description', '$status', '$image')";
     }
-    if ($conn->query($sql) === TRUE) {
+
+    if (mysqli_query($conn, $sql)) {
         echo "Record updated successfully";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 }
 
 // Handle delete promotion
 if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
+    $id = mysqli_real_escape_string($conn, $_GET['delete']);
     $sql = "DELETE FROM promotions WHERE id=$id";
-    if ($conn->query($sql) === TRUE) {
+    if (mysqli_query($conn, $sql)) {
         echo "Record deleted successfully";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 }
 
 // Fetch all promotions
 $sql = "SELECT * FROM promotions";
-$result = $conn->query($sql);
+$result = mysqli_query($conn, $sql);
 
 $promotions = [];
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
         $promotions[] = $row;
     }
 }
 
-$conn->close();
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
