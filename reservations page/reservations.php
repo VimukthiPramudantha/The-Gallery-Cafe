@@ -22,8 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO find_table (num_of_people, date, time) VALUES ('$num_of_people', '$date', '$time')";
 
     if (mysqli_query($conn, $sql)) {
-        echo "<script>showAlert('Reservation successful!', 'success');</script>";
-    } else {
+        echo "<script>
+        window.location.href = 'reservations_details.php';
+    </script>";    } else {
         echo "<script>showAlert('Error: " . mysqli_error($conn) . "', 'error');</script>";
     }
 
