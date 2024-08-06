@@ -20,12 +20,17 @@ body {
 
 .sidebar h2 {
     text-align: center;
+    font-family: Georgia, serif;
+    font-size: 23px;
 }
 
 .sidebar ul {
     list-style-type: none;
     padding: 0;
+    font-family: Serif;
+    font-size: 22px;
 }
+
 
 .sidebar ul li {
     margin: 20px 0;

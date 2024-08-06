@@ -62,26 +62,16 @@ mysqli_close($conn);
     <link rel="stylesheet" href="view_reservations.css">
 </head>
 <body>
-    <header>
-        <div class="logo">Admin Dashboard</div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Dashboard</a></li>
-                <li><a href="promotions.html">Promotions</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="view-reservations.php" class="active">View Reservations</a></li>
-                <li><a href="logout.php">Logout</a></li>
-            </ul>
-        </nav>
-    </header>
     <div class="container">
         <aside>
-            <ul>
-                <li><a href="index.html">Dashboard</a></li>
-                <li><a href="promotions.html">Promotions</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="view-reservations.php" class="active">View Reservations</a></li>
-                <li><a href="logout.php">Logout</a></li>
+        <h2>Admin Dashboard </h2>
+        <ul>
+                <li><a href="./dashbord.php">Dashboard</a></li>
+                <li><a href="./profile.php">Profile</a></li>
+                <li><a href="./add_user.php">Users</a></li>
+                <li><a href="./add_menu.php">Manage Menu</a></li>
+                <li><a href="#">Reservations</a></li>
+                <li><a href="./promotion.php">Promotions</a></li>
             </ul>
         </aside>
         <main>
@@ -142,8 +132,5 @@ mysqli_close($conn);
             </div>
         </main>
     </div>
-    <footer>
-        <p>&copy; 2024 Admin Dashboard. All rights reserved.</p>
-    </footer>
 </body>
 </html>

@@ -8,17 +8,22 @@ body {
 }
 
 header {
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: #333;
-    color: #fff;
+    background-color:transparent;
+    color: orange;
     width: 100%;
+    text-align: center;
 }
-
+aside h2{
+    font-family: Georgia, serif;
+    font-size: 23px;
+}
 header .logo {
     font-size: 1.5rem;
+    
 }
 
 header nav ul {
@@ -44,28 +49,33 @@ header nav ul li a {
 }
 
 aside {
-    width: 200px;
-    background-color: #f4f4f4;
-    padding: 1rem;
-    position: fixed;
-    top: 70px; /* Adjust based on the header height */
+    background-color: black;
+    top: 0px;
     bottom: 0;
     overflow-y: auto;
+    width: 225px;
+    color: orange;
+    padding: 20px;
+    position: fixed;
+    height: 100vh;
 }
 
 aside ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    /* padding-top: 55px;   */
 }
 
 aside ul li {
     margin-bottom: 1rem;
+    font-family: Serif;
+    font-size: 22px;
 }
 
 aside ul li a {
     text-decoration: none;
-    color: #333;
+    color: whitesmoke;
     display: block;
     padding: 0.5rem;
     border-radius: 4px;
@@ -75,9 +85,12 @@ aside ul li a.active {
     background-color: #007bff;
     color: #fff;
 }
+aside ul li a:hover {
+    background-color: #34495e;
+}
 
 main {
-    margin-left: 220px; /* Adjust based on the sidebar width */
+    margin-left: 265px; /* Adjust based on the sidebar width */
     padding: 2rem;
     flex: 1;
 }

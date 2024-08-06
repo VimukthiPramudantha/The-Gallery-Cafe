@@ -35,24 +35,15 @@ mysqli_close($conn);
     <link rel="stylesheet" href="staff_profile.css">
 </head>
 <body>
-    <header>
-        <div class="logo">Staff Dashboard</div>
-        <nav>
-            <ul>
-                <li><a href="staff-dashboard.php">Dashboard</a></li>
-                <li><a href="staff-profile.php" class="active">Profile</a></li>
-                <li><a href="view-reservations.php">View Reservations</a></li>
-                <li><a href="logout.php">Logout</a></li>
-            </ul>
-        </nav>
-    </header>
+    
     <div class="container">
         <aside>
+        <h2>Staff Dashboard</h2>
             <ul>
-                <li><a href="staff-dashboard.php">Dashboard</a></li>
-                <li><a href="staff-profile.php" class="active">Profile</a></li>
-                <li><a href="view-reservations.php">View Reservations</a></li>
-                <li><a href="logout.php">Logout</a></li>
+                <li><a href="./staff_dashbord.php" >Dashboard</a></li>
+                <li><a href="./staff_profile.php" class="active">Profile</a></li>
+                <li><a href="./view_reservations.php">View Reservations</a></li>
+                <li><a href="./logout.php">Logout</a></li>
             </ul>
         </aside>
         <main>
@@ -91,8 +82,6 @@ mysqli_close($conn);
             </div>
         </main>
     </div>
-    <footer>
-        <p>&copy; 2024 Staff Dashboard. All rights reserved.</p>
-    </footer>
+                    
 </body>
 </html>

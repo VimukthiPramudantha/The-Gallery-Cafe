@@ -20,7 +20,10 @@ header {
 header .logo {
     font-size: 1.5rem;
 }
-
+aside h2{
+    font-family: Georgia, serif;
+    font-size: 23px;
+}
 header nav ul {
     list-style: none;
     display: flex;

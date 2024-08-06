@@ -55,13 +55,13 @@ mysqli_close($conn);
                 <h1>Welcome, Admin </h1>
                 <div class="header-actions">
                     <input type="search" placeholder="Search...">
-                    <button>Logout</button>
+                    <a href="./staff/logout.php"><button>Logout</button></a>
                 </div>
             </header>
             <section class="content">
                 <div class="card">
                     <h3>Users</h3>
-                    <p>Number of users: <?php echo $user_count; ?></p>
+                    <p>Number of users: <?php echo $user_count;?></p>
                 </div>
               
                 <div class="card">

@@ -7,56 +7,37 @@ body {
     min-height: 100vh;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: #333;
-    color: #fff;
-    width: 100%;
-}
-
-header .logo {
-    font-size: 1.5rem;
-}
-
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-    margin: 0;
-    padding: 0;
-}
-
-header nav ul li {
-    display: inline;
-}
-
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
 
 .container {
     display: flex;
     flex: 1;
 }
-
+aside h2{
+    font-family: Georgia, serif;
+    font-size: 23px;
+}
 aside {
-    width: 200px;
-    background-color: #f4f4f4;
-    padding: 1rem;
-    position: fixed;
-    top: 70px; /* Adjust based on the header height */
+    top: 0px; 
     bottom: 0;
     overflow-y: auto;
+    width: 225px;
+    background-color: black;
+    color: orange;
+    padding: 20px;
+    position: fixed;
+    height: 100vh;
+}
+aside ul li a:hover {
+    background-color: #34495e;
+    color: white;
 }
 
 aside ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    font-family: Serif;
+    font-size: 22px;
 }
 
 aside ul li {
@@ -65,7 +46,7 @@ aside ul li {
 
 aside ul li a {
     text-decoration: none;
-    color: #333;
+    color: whitesmoke;
     display: block;
     padding: 0.5rem;
     border-radius: 4px;
@@ -94,6 +75,7 @@ main {
 .reservations-container h1 {
     margin-bottom: 1.5rem;
     text-align: center;
+    color: #e77b0f;
 }
 
 .status-bar {

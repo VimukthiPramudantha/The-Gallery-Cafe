@@ -55,7 +55,7 @@ mysqli_close($conn);
     <link rel="stylesheet" href="add_user.css">
 </head>
 <body>
-    <header>
+    <!-- <header>
         <div class="logo">Admin Dashboard</div>
         <nav>
             <ul>
@@ -66,15 +66,17 @@ mysqli_close($conn);
                 <li><a href="logout.php">Logout</a></li>
             </ul>
         </nav>
-    </header>
+    </header> -->
     <div class="container">
         <aside>
-            <ul>
-                <li><a href="index.html">Dashboard</a></li>
-                <li><a href="promotions.html">Promotions</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="add-user.php" class="active">Add User</a></li>
-                <li><a href="logout.php">Logout</a></li>
+       <a href="./" style="color: orange;"> <h2>Admin Dashboard</h2></a>
+       <ul>
+                <li><a href="./dashbord.php">Dashboard</a></li>
+                <li><a href="./profile.php">Profile</a></li>
+                <li><a href="#">Users</a></li>
+                <li><a href="./add_menu.php">Manage Menu</a></li>
+                <li><a href="./view_reservations.php">Reservations</a></li>
+                <li><a href="./promotion.php">Promotions</a></li>
             </ul>
         </aside>
         <main>
@@ -125,8 +127,6 @@ mysqli_close($conn);
             </div>
         </main>
     </div>
-    <footer>
-        <p>&copy; 2024 Admin Dashboard. All rights reserved.</p>
-    </footer>
+                    
 </body>
 </html>

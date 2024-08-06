@@ -7,60 +7,36 @@ body {
     min-height: 100vh;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: #333;
-    color: #fff;
-    width: 100%;
-}
-
-header .logo {
-    font-size: 1.5rem;
-}
-
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-    margin: 0;
-    padding: 0;
-}
-
-header nav ul li {
-    display: inline;
-}
-
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-header .user-profile {
-    cursor: pointer;
-}
-
 .container {
     display: flex;
     flex: 1;
 }
 
 aside {
-    width: 200px;
-    background-color: #f4f4f4;
-    padding: 1rem;
-    position: fixed;
-    top: 70px; /* Adjust based on the header height */
+    top: 0px; 
     bottom: 0;
     overflow-y: auto;
+    width: 225px;
+    background-color: black;
+    color: orange;
+    padding: 20px;
+    position: fixed;
+    height: 100vh;
 }
-
+aside h2{
+    font-family: Georgia, serif;
+    font-size: 23px;
+}
+aside ul li a:hover {
+    background-color: #34495e;
+    color: white;
+}
 aside ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    font-family: Serif;
+    font-size: 22px;
 }
 
 aside ul li {
@@ -69,7 +45,7 @@ aside ul li {
 
 aside ul li a {
     text-decoration: none;
-    color: #333;
+    color: whitesmoke;
     display: block;
     padding: 0.5rem;
     border-radius: 4px;
@@ -91,8 +67,11 @@ main {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+    margin-left: 30px;
 }
-
+.main-header h1{
+    color: #e77b0f;
+}
 .add-btn {
     background-color: #007bff;
     color: #fff;
@@ -113,6 +92,7 @@ main {
     padding: 1rem;
     border-radius: 4px;
     position: relative;
+    margin-left: 30px;
 }
 
 .promotion-card h2 {

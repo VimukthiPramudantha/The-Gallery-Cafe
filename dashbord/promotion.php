@@ -67,28 +67,17 @@ mysqli_close($conn);
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="logo">Admin Dashboard</div>
-        <nav>
-            <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Orders</a></li>
-                <li><a href="#">Customers</a></li>
-                <li><a href="#">Reports</a></li>
-                <li><a href="#">Settings</a></li>
-            </ul>
-        </nav>
-        <div class="user-profile">Admin | Logout</div>
-    </header>
+    
     <div class="container">
         <aside>
-            <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#" class="active">Promotions</a></li>
-                <li><a href="#">Orders</a></li>
-                <li><a href="#">Customers</a></li>
-                <li><a href="#">Reports</a></li>
-                <li><a href="#">Settings</a></li>
+        <h2>Admin Dashboard </h2>
+        <ul>
+                <li><a href="./dashbord.php">Dashboard</a></li>
+                <li><a href="./profile.php">Profile</a></li>
+                <li><a href="./add_user.php">Users</a></li>
+                <li><a href="./add_menu.php">Manage Menu</a></li>
+                <li><a href="./view_reservations.php">Reservations</a></li>
+                <li><a href="#">Promotions</a></li>
             </ul>
         </aside>
         <main>
@@ -110,15 +99,7 @@ mysqli_close($conn);
             </section>
         </main>
     </div>
-    <footer>
-        <p>&copy; 2024 Admin Dashboard. All rights reserved.</p>
-        <nav>
-            <ul>
-                <li><a href="#">Help</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </footer>
+   
     <!-- Promotion Form Modal -->
     <div id="promotionForm" class="modal">
         <div class="modal-content">

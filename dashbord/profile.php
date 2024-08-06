@@ -46,23 +46,22 @@ mysqli_close($conn);
 </head>
 <body>
     <header>
-        <div class="logo">Admin Dashboard</div>
+        <div class="logo">
+           <h2> Admin Profile</h2></div>
         <nav>
-            <ul>
-                <li><a href="index.html">Dashboard</a></li>
-                <li><a href="promotions.html">Promotions</a></li>
-                <li><a href="profile.php" class="active">Profile</a></li>
-                <li><a href="logout.php">Logout</a></li>
-            </ul>
+            
         </nav>
     </header>
     <div class="container">
         <aside>
+        <h2 style="color: orange;">Admin Dashboard</h2>
             <ul>
-                <li><a href="index.html">Dashboard</a></li>
-                <li><a href="promotions.html">Promotions</a></li>
-                <li><a href="profile.php" class="active">Profile</a></li>
-                <li><a href="logout.php">Logout</a></li>
+                <li><a href="./dashbord.php">Dashboard</a></li>
+                <li><a href="">Profile</a></li>
+                <li><a href="./add_user.php">Users</a></li>
+                <li><a href="./add_menu.php">Manage Menu</a></li>
+                <li><a href="./view_reservations.php">Reservations</a></li>
+                <li><a href="./promotion.php">Promotions</a></li>
             </ul>
         </aside>
         <main>
@@ -78,8 +77,6 @@ mysqli_close($conn);
             </section>
         </main>
     </div>
-    <footer>
-        <p>&copy; 2024 Admin Dashboard. All rights reserved.</p>
-    </footer>
+    
 </body>
 </html>
