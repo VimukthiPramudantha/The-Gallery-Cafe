@@ -1,0 +1,208 @@
+.topnav {
+  padding-top: 40px;
+  padding-right: 50px;
+  overflow: hidden;
+  /* background-color: black; */
+  margin-left: 10px;
+  font-family: "Gill Sans", sans-serif;
+}
+.topnav a {
+  float: right;
+  color: whitesmoke;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topnav a:hover {
+  /* background-color: #fdebd0; */
+  color: orange;
+}
+.topnav a.active {
+  /* background-color: #04AA6D; */
+  color: white;
+}
+body {
+  background-color: black;
+}
+main {
+  color: whitesmoke;
+}
+#about {
+  font-family: "Gill Sans", sans-serif;
+  text-align: center;
+  color: silver;
+  margin-bottom: 80px;
+  margin-top: 100px;
+  font-size: 15.3px;
+}
+#about p {
+  margin: 0px 50px 0px 50px;
+}
+#beverages {
+  margin-left: 5%;
+  font-size: 25px;
+  display: inline;
+  /* float: left; */
+  padding-right: 15%;
+  color: silver;
+}
+#beverages h3 {
+  color: whitesmoke;
+}
+#bla {
+  display: flex;
+  align-items: center;
+  /* float: right; */
+  margin-bottom: 50px;
+}
+#Drinks {
+  display: inline;
+  font-size: 25px;
+  padding-left: 15%;
+  /* float: right; */
+  color: silver;
+}
+#Drinks h3 {
+  color: whitesmoke;
+}
+#Dimg {
+  margin-left: 5%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+#workspace {
+  display: inline;
+  font-size: 25px;
+  padding-right: 10%;
+  color: silver;
+}
+#workspace h3 {
+  color: whitesmoke;
+}
+#Wimg {
+  display: flex;
+  align-items: center;
+  margin-left: 5%;
+  margin-bottom: 50px;
+}
+#Timg {
+  display: flex;
+  align-items: center;
+  margin-left: 5%;
+  margin-bottom: 50px;
+}
+#takeaway {
+  display: inline;
+  font-size: 25px;
+  padding-left: 15%;
+  color: silver;
+}
+#takeaway h3 {
+  color: whitesmoke;
+}
+header {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+}
+
+header::before {
+  content: "";
+  background-image: url(../img/rr-abrot-pNIgH0y3upM-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
+  z-index: -1;
+}
+header .content {
+  position: relative;
+  z-index: 1;
+}
+#hAbout {
+  text-align: center;
+  font-size: 65px;
+  line-height: 65px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  color: orange;
+}
+table {
+  color: aliceblue;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 5px;
+  margin-top: 80px;
+}
+th,
+td {
+  text-align: center;
+  /* padding: 10px; */
+  font-style: inherit;
+}
+a {
+  text-decoration: none;
+  color: silver;
+}
+a:hover {
+  color: orange;
+}
+@media (min-width: 1920px) {
+  #beverages {
+    margin-left: 6%;
+    font-size: 29px;
+    padding-right: 27%;
+  }
+  #bla{
+    margin-bottom:100px ;
+  }
+  #imgB {
+    width: 423px;
+    height: 299px;
+  }
+  #Drinks {
+    font-size: 29px;
+    padding-left: 27%;
+    margin-right: 5%;
+  }
+  #Dimg {
+    margin-left: 6%;
+    margin-bottom: 100px;
+  }
+  #workspace {
+    font-size: 29px;
+    padding-right: 24%;
+  }
+  #Wimg {
+    margin-left: 6%;
+    margin-bottom: 130px;
+  }
+  #Timg {
+    margin-left: 6%;
+  }
+  #takeaway {
+    font-size: 29px;
+    padding-left: 27%;
+  }
+  th,
+td {
+  font-size: 25px;
+}
+#about {
+  margin-bottom: 95px;
+        margin-top: 110px;
+        font-size: 18px;
+        margin-left: 40px;
+        margin-right: 40px;
+}
+#h1H{
+  font-size: 35px;
+}
+}
