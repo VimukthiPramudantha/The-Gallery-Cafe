@@ -86,7 +86,7 @@ header {
 }
 header::before {
   content: "";
-  background-image: url(./img/yuri-krupenin-S2FVm0tOv1w-unsplash.jpg);
+  background-image: url(../img/yuri-krupenin-S2FVm0tOv1w-unsplash.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;

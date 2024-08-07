@@ -1,0 +1,131 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 225px;
+    color: #fff;
+    background-color: black;
+    padding: 20px;
+    position: fixed;
+    height: 100vh;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: 'Georgia', serif;
+    color: orange;
+    padding-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-size: 21px;
+}
+
+.sidebar ul li a.active, .sidebar ul li a:hover {
+    background-color: #555;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: #333;
+    font-family: 'Helvetica', sans-serif;
+}
+
+.header-actions input[type="search"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.header-actions button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.header-actions button:hover {
+    background-color: #c0392b;
+}
+
+.content-section {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-family: 'Verdana', sans-serif;
+}
+
+.form-group input {
+    width: 98%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Verdana', sans-serif;
+}
+
+.form-group button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Verdana', sans-serif;
+}
+
+.form-group button:hover {
+    background-color: #0056b3;
+}
+.box{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Verdana', sans-serif;
+}

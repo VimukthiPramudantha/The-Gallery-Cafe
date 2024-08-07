@@ -1,0 +1,148 @@
+/* view-reservations.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+.container {
+    display: flex;
+    flex: 1;
+}
+aside h2{
+    font-family: Georgia, serif;
+    font-size: 23px;
+}
+aside {
+    top: 0px; 
+    bottom: 0;
+    overflow-y: auto;
+    width: 225px;
+    background-color: black;
+    color: orange;
+    padding: 20px;
+    position: fixed;
+    height: 100vh;
+}
+aside ul li a:hover {
+    background-color: #34495e;
+    color: white;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: Serif;
+    font-size: 22px;
+}
+
+aside ul li {
+    margin-bottom: 1rem;
+}
+
+aside ul li a {
+    text-decoration: none;
+    color: whitesmoke;
+    display: block;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+aside ul li a.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+main {
+    margin-left: 220px; /* Adjust based on the sidebar width */
+    padding: 2rem;
+    flex: 1;
+}
+
+.reservations-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.reservations-container h1 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #e77b0f;
+}
+
+.status-bar {
+    background-color: #f4f4f4;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 1rem;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+}
+
+thead {
+    background-color: #f4f4f4;
+}
+
+th {
+    font-weight: bold;
+}
+
+button {
+    border: none;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    margin-right: 0.5rem;
+}
+
+.confirm-btn {
+    background-color: #28a745;
+}
+
+.confirm-btn:hover {
+    background-color: #218838;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}

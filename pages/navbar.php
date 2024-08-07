@@ -3,11 +3,11 @@
         <a href="./menu.php" class="navbar">Menu</a>
 
         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-          <a href="./pages/dashbord.php" class="navbar">Dashboard</a>
+          <a href="./dashbord.php" class="navbar">Dashboard</a>
       <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] === 'staff'): ?>
-        <a href="./pages/staff/staff_dashbord.php" class="navbar">Dashboard</a>
-      <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-        <a href="./pages/user/user.php" class="navbar">profile</a>
+        <a href="./staff_dashbord.php" class="navbar">Dashboard</a>
+      <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] === 'customer'): ?>
+        <a href="./user.php" class="navbar">profile</a>
       <?php endif  ?>
      
         <a href="./specials.php" class="navbar">Specials</a>

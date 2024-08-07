@@ -1,0 +1,120 @@
+/* profile.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    /* display: flex; */
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color:transparent;
+    color: orange;
+    width: 100%;
+    text-align: center;
+}
+aside h2{
+    font-family: Georgia, serif;
+    font-size: 23px;
+}
+header .logo {
+    font-size: 1.5rem;
+    
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+}
+
+aside {
+    background-color: black;
+    top: 0px;
+    bottom: 0;
+    overflow-y: auto;
+    width: 225px;
+    color: orange;
+    padding: 20px;
+    position: fixed;
+    height: 100vh;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* padding-top: 55px;   */
+}
+
+aside ul li {
+    margin-bottom: 1rem;
+    font-family: Serif;
+    font-size: 22px;
+}
+
+aside ul li a {
+    text-decoration: none;
+    color: whitesmoke;
+    display: block;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+aside ul li a.active {
+    background-color: #007bff;
+    color: #fff;
+}
+aside ul li a:hover {
+    background-color: #34495e;
+}
+
+main {
+    margin-left: 265px; /* Adjust based on the sidebar width */
+    padding: 2rem;
+    flex: 1;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-details img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.profile-details h2, .profile-details p {
+    margin: 0;
+}
