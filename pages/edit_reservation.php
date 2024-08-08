@@ -52,6 +52,7 @@ $reservation = mysqli_fetch_assoc($result);
         <nav class="sidebar">
             <h2>User Dashboard</h2>
             <ul>
+            <li><a href="./Home.php">Home</a></li>
                 <li><a href="user.php">Profile</a></li>
                 <li><a href="./logout.php">Logout</a></li>
             </ul>

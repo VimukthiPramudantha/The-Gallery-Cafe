@@ -26,6 +26,7 @@ include('../dataBaseConnection.php');
         <aside>
             <h2>Staff Dashboard</h2>
             <ul>
+                <li><a href="./Home.php">Home</a></li>
                 <li><a href="#" class="active">Dashboard</a></li>
                 <li><a href="./staff_profile.php">Profile</a></li>
                 <li><a href="./view_reservations.php">View Reservations</a></li>

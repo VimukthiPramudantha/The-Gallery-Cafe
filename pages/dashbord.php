@@ -14,7 +14,7 @@ $user_count_row = mysqli_fetch_assoc($user_count_result);
 $user_count = $user_count_row['user_count'];
 
 // Fetch reservation count
-$reservation_count_sql = "SELECT COUNT(*) as reservation_count FROM reservation_details";
+$reservation_count_sql = "SELECT COUNT(*) as reservation_count FROM reservations";
 $reservation_count_result = mysqli_query($conn, $reservation_count_sql);
 $reservation_count_row = mysqli_fetch_assoc($reservation_count_result);
 $reservation_count = $reservation_count_row['reservation_count'];
@@ -35,6 +35,7 @@ mysqli_close($conn);
         <nav class="sidebar">
             <h2>Admin Dashboard </h2>
             <ul>
+            <li><a href="./Home.php">Home</a></li>
                 <li><a href="./profile.php">Profile</a></li>
                 <li><a href="./add_user.php">Users</a></li>
                 <li><a href="./add_menu.php">Manage Menu</a></li>

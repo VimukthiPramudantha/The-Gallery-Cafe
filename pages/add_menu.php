@@ -20,43 +20,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $item_description = mysqli_real_escape_string($conn, $_POST['item_description']);
     $item_price = mysqli_real_escape_string($conn, $_POST['item_price']);
     $item_category = mysqli_real_escape_string($conn, $_POST['item_category']);
+    $menu_id = mysqli_real_escape_string($conn, $_POST['menu_id']);
 
     // Handle file upload
-    $item_image = '';
-    if (isset($_FILES['item_image']) && $_FILES['item_image']['error'] === UPLOAD_ERR_OK) {
-        $file_tmp = $_FILES['item_image']['tmp_name'];
-        $file_name = $_FILES['item_image']['name'];
-        $file_size = $_FILES['item_image']['size'];
-        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-
-        $allowed_exts = ['jpg', 'jpeg', 'png', 'gif'];
-        if (in_array($file_ext, $allowed_exts)) {
-            $new_file_name = uniqid('', true) . '.' . $file_ext;
-            $upload_dir = 'uploads/';
-            if (!is_dir($upload_dir)) {
-                mkdir($upload_dir, 0777, true);
-            }
-            $upload_file = $upload_dir . $new_file_name;
-            if (move_uploaded_file($file_tmp, $upload_file)) {
-                $item_image = $new_file_name;
-            } else {
-                echo "<p>Error uploading image.</p>";
-                exit;
-            }
-        } else {
-            echo "<p>Invalid file type.</p>";
-            exit;
+    if (!empty($_FILES['item_image']['tmp_name'])) {
+        $image = $_FILES['item_image']['tmp_name'];
+       $imgContent = addslashes(file_get_contents($image));
+           
         }
-    }
 
     // Prepare SQL query
-    $sql = "INSERT INTO menu_item (name, description, price, category_name, image) 
-            VALUES ('$item_name', '$item_description', '$item_price', '$item_category', '$item_image')";
+    $sql = "INSERT INTO menu_item (name, description, price, category_name, image, menu_id) 
+            VALUES ('$item_name', '$item_description', '$item_price', '$item_category', '$imgContent', '$menu_id')";
 
     if (mysqli_query($conn, $sql)) {
-        echo "<p>New menu item added successfully.</p>";
+        echo "<script>alert('New menu item added successfully.'); window.location.href='add_menu.php';</script>";
     } else {
-        echo "<p>Error: " . $sql . "<br>" . mysqli_error($conn) . "</p>";
+        echo "<script>alert('Error: " . mysqli_error($conn) . "'); window.location.href='add_menu.php';</script>";
     }
 
     mysqli_close($conn);
@@ -71,11 +51,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../CSS/add_menu.css">
 </head>
 <body>
-   
     <div class="container">
         <aside>
-        <h2>Admin Dashboard </h2>
-        <ul>
+            <h2>Admin Dashboard</h2>
+            <ul>
+                <li><a href="./Home.php">Home</a></li>
                 <li><a href="./dashbord.php">Dashboard</a></li>
                 <li><a href="./profile.php">Profile</a></li>
                 <li><a href="./add_user.php">Users</a></li>
@@ -103,10 +83,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <option value="">Select Category</option>
                         <option value="coffee">Coffee</option>
                         <option value="pastries">Pastries</option>
-                        <option value="cold-beverages">Cold Beverages</option>
+                        <option value="Cold Beverages">Cold Beverages</option>
                         <option value="sandwiches-wraps">Sandwiches & Wraps</option>
                         <option value="Ceylon Tea">Ceylon tea</option>
                         <option value="Pastries and Breads">Pastries and Breads</option>
+                    </select>
+
+                    <label for="menu_id">Menu ID:</label>
+                    <select id="menu_id" name="menu_id" required>
+                        <option value="">Select Menu ID</option>
+                        <option value="1">Favourite Dishes</option>
+                        <option value="2">Pastries</option>
+                        <option value="3">Cold Beverages</option>
+                        <option value="4">Sandwiches & Wraps</option>
+                        <option value="5">Ceylon Tea</option>
+                        <option value="6">Pastries and Breads</option>
                     </select>
 
                     <label for="item-image">Upload Image:</label>
@@ -117,6 +108,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </main>
     </div>
-    
 </body>
 </html>

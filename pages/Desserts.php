@@ -1,18 +1,16 @@
+<?php  
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>The Gallery Cafe - Menu</title>
-    <link rel="stylesheet" href="./Desserts.css" />
+    <link rel="stylesheet" href="../css/Desserts.css" />
 </head>
 <body>
     <header>
-        <div class="topnav">
-            <a href="../index/Home.html" class="navbar">Home</a>
-            <a href="#menu" class="navbar" style="color: orange">Menu</a>
-            <a href="../Specials page/specials.html" class="navbar">Specials</a>
-            <a href="../reservations page/reservations.html" class="navbar">Reservations</a>
-            <a href="../Contact Us page/contact.html" class="navbar">Contact Us</a>
-        </div>
+        <?php include('./navbar.php'); ?>
         <div id="hAbout">
             <h1>Desserts</h1>
         </div>
@@ -35,7 +33,7 @@
                 }
 
                 // Retrieve menu data for Desserts
-                $sql = "SELECT name, description, price, image FROM menu_item WHERE menu_id = 3";
+                $sql = "SELECT id, name, description, price, image FROM menu_item WHERE menu_id = 3 && category_name = 'Desserts' ";
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
@@ -43,17 +41,23 @@
                     while($row = mysqli_fetch_assoc($result)) {
                         echo "<div class='dis'>";
                         echo "<div>";
-                        echo "<h2 class='h2'>" . $row["name"] . "</h2>";
+                        echo "<h2 class='h2'>" . htmlspecialchars($row["name"]) . "</h2>";
 
                         // Check if image data is present
                         if ($row['image']) {
                             echo "<img src='data:image/jpeg;base64," . base64_encode($row['image']) . "' alt='' class='image' />";
                         }
                       
-                        echo "<button class='add'>Add To Cart</button>";
+                        echo "<form action='add_to_cart.php' method='POST'>";
+                        echo "<input type='hidden' name='item_id' value='" . htmlspecialchars($row['id']) . "'>";
+                        echo "<input type='hidden' name='item_name' value='" . htmlspecialchars($row['name']) . "'>";
+                        echo "<input type='hidden' name='price' value='" . htmlspecialchars($row['price']) . "'>";
+                        echo "<button type='submit' class='add'>Add To Cart</button>";
+                        echo "</form>";
+
                         echo "<div>";
-                        echo "<p>" . $row["description"] . "</p>";
-                        echo "<p><strong>Price: </strong>" . number_format($row["price"], 2) . "</p>"; // Display price with 2 decimal places
+                        echo "<p>" . htmlspecialchars($row["description"]) . "</p>";
+                        echo "<p><strong>Price:</strong> Rs." . number_format($row["price"], 2) . "</p>"; // Display price with 2 decimal places
                         echo "</div>";
                         echo "</div>";
                         echo "</div>";
@@ -71,10 +75,10 @@
     <div id="contact">
         <table>
             <tr>
-                <th><img src="./img/address.png" alt="" /></th>
-                <th><img src="./img/Email.png" alt="" /></th>
-                <th><img src="./img/phone.png" alt="" /></th>
-                <th><img src="./img/icons8-time-machine-100.png" alt="" /></th>
+                <th><img src="../img/address.png" alt="" /></th>
+                <th><img src="../img/Email.png" alt="" /></th>
+                <th><img src="../img/phone.png" alt="" /></th>
+                <th><img src="../img/icons8-time-machine-100.png" alt="" /></th>
             </tr>
             <tr style="text-align: center">
                 <td><h2>Address</h2></td>
@@ -90,7 +94,7 @@
                     Sri Lanka 80000
                 </td>
                 <td style="font-size: 20px">
-                    <a href="#Email">info@thegallerycafe.lk</a>
+                    <a href="mailto:info@thegallerycafe.lk">info@thegallerycafe.lk</a>
                 </td>
                 <td style="font-size: 20px">+94 77 123 4567</td>
                 <td style="font-size: 20px">

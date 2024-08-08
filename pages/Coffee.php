@@ -1,3 +1,7 @@
+<?php  
+session_start();
+?>
+
 <?php
 $servername = "localhost";
 $username = "root";
@@ -16,7 +20,7 @@ if (!$conn) {
 $menu_id = 1; // Adjust to the correct menu_id for Coffee items
 
 // Fetch menu items
-$sql_items = "SELECT * FROM menu_item WHERE category_name = 'Coffee' && menu_id = $menu_id";
+$sql_items = "SELECT id, name, description, price, image FROM menu_item WHERE category_name = 'Coffee' AND menu_id = $menu_id";
 $result_items = mysqli_query($conn, $sql_items);
 
 // Check if there are results
@@ -41,7 +45,7 @@ mysqli_close($conn);
 </head>
 <body>
     <header>
-        <?php include('../navbar.php') ?>
+        <?php include('./navbar.php') ?>
         <div id="hAbout">
             <h1>Coffee</h1>
         </div>
@@ -53,13 +57,20 @@ mysqli_close($conn);
                 <div class="dis">
                     <div>
                         <h2 class="h2"><?php echo htmlspecialchars($item['name']); ?></h2>
-                        <?php
-                        // Display the image as base64
-                        $imageData = base64_encode($item['image']);
-                        $src = 'data:image/png;base64,' . $imageData;
-                        ?>
-                        <img src="<?php echo $src; ?>" alt="" class="image" />
-                        <button class="add">Add To Cart</button>
+                        <?php if (!empty($item['image'])): ?>
+                            <?php
+                            // Display the image as base64
+                            $imageData = base64_encode($item['image']);
+                            $src = 'data:image/png;base64,' . $imageData;
+                            ?>
+                            <img src="<?php echo $src; ?>" alt="" class="image" />
+                        <?php endif; ?>
+                        <form action="add_to_cart.php" method="POST">
+                            <input type="hidden" name="item_id" value="<?php echo htmlspecialchars($item['id']); ?>">
+                            <input type="hidden" name="item_name" value="<?php echo htmlspecialchars($item['name']); ?>">
+                            <input type="hidden" name="price" value="<?php echo htmlspecialchars($item['price']); ?>">
+                            <button type="submit" class="add">Add To Cart</button>
+                        </form>
                         <div>
                             <p><?php echo htmlspecialchars($item['description']); ?></p>
                             <p><strong>Price:</strong> Rs.<?php echo number_format($item['price'], 2); ?></p>
@@ -94,7 +105,7 @@ mysqli_close($conn);
                     Sri Lanka 80000
                 </td>
                 <td style="font-size: 20px">
-                    <a href="#Email">info@thegallerycafe.lk</a>
+                    <a href="mailto:info@thegallerycafe.lk">info@thegallerycafe.lk</a>
                 </td>
                 <td style="font-size: 20px">+94 77 123 4567</td>
                 <td style="font-size: 20px">

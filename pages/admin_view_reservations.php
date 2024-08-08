@@ -16,9 +16,9 @@ if (!$conn) {
 // Handle Confirm Action
 if (isset($_POST['confirm'])) {
     $reservation_id = (int)$_POST['reservation_id'];
-    $sql = "UPDATE reservation_details SET status = 'Confirmed' WHERE id = $reservation_id";
+    $sql = "UPDATE reservations SET status = 'Confirmed' WHERE id = $reservation_id";
     if (mysqli_query($conn, $sql)) {
-        echo "<script>alert('Status updated to Confirmed.'); window.location.href='view_reservations.php';</script>";
+        echo "<script>alert('Status updated to Confirmed.'); window.location.href='admin_view_reservations.php';</script>";
     } else {
         echo "<script>alert('Error updating status: " . mysqli_error($conn) . "');</script>";
     }
@@ -27,18 +27,18 @@ if (isset($_POST['confirm'])) {
 // Handle Delete Action
 if (isset($_POST['delete'])) {
     $reservation_id = (int)$_POST['reservation_id'];
-    $sql = "DELETE FROM reservation_details WHERE id = $reservation_id";
+    $sql = "DELETE FROM reservations WHERE id = $reservation_id";
     if (mysqli_query($conn, $sql)) {
-        echo "<script>alert('Reservation deleted successfully.'); window.location.href='view_reservations.php';</script>";
+        echo "<script>alert('Reservation deleted successfully.'); window.location.href='admin_view_reservations.php';</script>";
     } else {
         echo "<script>alert('Error deleting reservation: " . mysqli_error($conn) . "');</script>";
     }
 }
 
 // Fetch all reservations with table details
-$sql = "SELECT r.*, t.num_of_people, t.date AS table_date, t.time AS table_time
-        FROM reservation_details r
-        JOIN find_table t ON r.table_id = t.table_id";
+$sql = "SELECT r.*, t.table_no, t.capacity
+        FROM reservations r
+        JOIN tables t ON r.table_id = t.id";
 $result = mysqli_query($conn, $sql);
 
 $reservations = [];
@@ -65,6 +65,7 @@ mysqli_close($conn);
         <aside>
             <h2>Admin Dashboard</h2>
             <ul>
+                <li><a href="./Home.php">Home</a></li>
                 <li><a href="./dashbord.php">Dashboard</a></li>
                 <li><a href="./profile.php">Profile</a></li>
                 <li><a href="./add_user.php">Users</a></li>
@@ -72,6 +73,7 @@ mysqli_close($conn);
                 <li><a href="#">Reservations</a></li>
                 <li><a href="./promotion.php">Promotions</a></li>
                 <li><a href="./view_feedback.php">Feedback</a></li>
+                <li><a href="./logout.php">Logout</a></li>
             </ul>
         </aside>
         <main>
@@ -90,8 +92,10 @@ mysqli_close($conn);
                             <th>Occasion</th>
                             <th>Special Request</th>
                             <th>Number of Guests</th>
-                            <th>Table Date</th>
-                            <th>Table Time</th>
+                            <th>Table No</th>
+                            <th>Table Capacity</th>
+                            <th>Date</th>
+                            <th>Time</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -107,8 +111,10 @@ mysqli_close($conn);
                                     <td><?php echo htmlspecialchars($reservation['occasion']); ?></td>
                                     <td><?php echo htmlspecialchars($reservation['special_request']); ?></td>
                                     <td><?php echo htmlspecialchars($reservation['num_of_people']); ?></td>
-                                    <td><?php echo htmlspecialchars($reservation['table_date']); ?></td>
-                                    <td><?php echo htmlspecialchars($reservation['table_time']); ?></td>
+                                    <td><?php echo htmlspecialchars($reservation['table_no']); ?></td>
+                                    <td><?php echo htmlspecialchars($reservation['capacity']); ?></td>
+                                    <td><?php echo htmlspecialchars($reservation['reservation_date']); ?></td>
+                                    <td><?php echo htmlspecialchars($reservation['reservation_time']); ?></td>
                                     <td><?php echo htmlspecialchars($reservation['status']); ?></td>
                                     <td>
                                         <form method="POST" style="display:inline;">
@@ -124,7 +130,7 @@ mysqli_close($conn);
                             <?php endforeach; ?>
                         <?php else: ?>
                             <tr>
-                                <td colspan="11">No reservations found.</td>
+                                <td colspan="13">No reservations found.</td>
                             </tr>
                         <?php endif; ?>
                     </tbody>

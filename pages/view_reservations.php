@@ -16,7 +16,7 @@ if (!$conn) {
 // Handle Confirm Action
 if (isset($_POST['confirm'])) {
     $reservation_id = (int)$_POST['reservation_id'];
-    $sql = "UPDATE reservation_details SET status = 'Confirmed' WHERE id = $reservation_id";
+    $sql = "UPDATE reservations SET status = 'Confirmed' WHERE id = $reservation_id";
     if (mysqli_query($conn, $sql)) {
         echo "<p>Status updated to Confirmed.</p>";
     } else {
@@ -24,21 +24,21 @@ if (isset($_POST['confirm'])) {
     }
 }
 
-// Handle Delete Action
-if (isset($_POST['delete'])) {
+// Handle Cancel Action
+if (isset($_POST['cancel'])) {
     $reservation_id = (int)$_POST['reservation_id'];
-    $sql = "DELETE FROM reservation_details WHERE id = $reservation_id";
+    $sql = "UPDATE reservations SET status = 'Cancelled' WHERE id = $reservation_id";
     if (mysqli_query($conn, $sql)) {
-        echo "<p>Reservation deleted successfully.</p>";
+        echo "<p>Reservation cancelled successfully.</p>";
     } else {
-        echo "<p>Error deleting reservation: " . mysqli_error($conn) . "</p>";
+        echo "<p>Error cancelling reservation: " . mysqli_error($conn) . "</p>";
     }
 }
 
 // Fetch all reservations with table details
-$sql = "SELECT r.*, t.num_of_people, t.date AS table_date, t.time AS table_time
-        FROM reservation_details r
-        JOIN find_table t ON r.table_id = t.id";
+$sql = "SELECT r.*, t.table_no, t.capacity
+        FROM reservations r
+        JOIN tables t ON r.table_id = t.id";
 $result = mysqli_query($conn, $sql);
 
 $reservations = [];
@@ -52,7 +52,6 @@ if (mysqli_num_rows($result) > 0) {
 mysqli_close($conn);
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,10 +63,11 @@ mysqli_close($conn);
 <body>
     <div class="container">
         <aside>
-        <h2>Staff Dashboard</h2>
+            <h2>Staff Dashboard</h2>
             <ul>
-                <li><a href="./staff_dashbord.php" >Dashboard</a></li>
-                <li><a href="./staff_profile.php" >Profile</a></li>
+                <li><a href="./Home.php">Home</a></li>
+                <li><a href="./staff_dashboard.php">Dashboard</a></li>
+                <li><a href="./staff_profile.php">Profile</a></li>
                 <li><a href="#" class="active">View Reservations</a></li>
                 <li><a href="./logout.php">Logout</a></li>
             </ul>
@@ -83,6 +83,7 @@ mysqli_close($conn);
                             <th>Date</th>
                             <th>Time</th>
                             <th>Guests</th>
+                            <th>Table</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -92,20 +93,21 @@ mysqli_close($conn);
                         <tr>
                             <td><?php echo htmlspecialchars($reservation['name']); ?></td>
                             <td><?php echo htmlspecialchars($reservation['email']); ?></td>
-                            <td><?php echo htmlspecialchars($reservation['table_date']); ?></td>
-                            <td><?php echo htmlspecialchars($reservation['table_time']); ?></td>
+                            <td><?php echo htmlspecialchars($reservation['reservation_date']); ?></td>
+                            <td><?php echo htmlspecialchars($reservation['reservation_time']); ?></td>
                             <td><?php echo htmlspecialchars($reservation['num_of_people']); ?></td>
+                            <td><?php echo htmlspecialchars($reservation['table_no']); ?></td>
                             <td><?php echo htmlspecialchars($reservation['status']); ?></td>
                             <td>
-                            <form method="POST" action="confirm-reservation.php" style="display:inline;">
-    <input type="hidden" name="reservation_id" value="<?php echo $reservation['id']; ?>">
-    <button type="submit" name="confirm" class="confirm-button">Confirm</button>
-</form>
+                                <form method="POST" action="" style="display:inline;">
+                                    <input type="hidden" name="reservation_id" value="<?php echo $reservation['id']; ?>">
+                                    <button type="submit" name="confirm" class="confirm-button">Confirm</button>
+                                </form>
 
-<form method="POST" action="cancel-reservation.php" style="display:inline;">
-    <input type="hidden" name="reservation_id" value="<?php echo $reservation['id']; ?>">
-    <button type="submit" name="cancel" class="cancel-button">Cancel</button>
-</form>
+                                <form method="POST" action="" style="display:inline;">
+                                    <input type="hidden" name="reservation_id" value="<?php echo $reservation['id']; ?>">
+                                    <button type="submit" name="cancel" class="cancel-button">Cancel</button>
+                                </form>
                             </td>
                         </tr>
                         <?php endforeach; ?>

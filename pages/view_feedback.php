@@ -11,6 +11,7 @@
         <div class="logo">Admin Dashboard</div>
         <nav>
             <ul>
+            <li><a href="./Home.php">Home</a></li>
                 <li><a href="index.html">Dashboard</a></li>
                 <li><a href="view-reservations.html">View Reservations</a></li>
                 <li><a href="add-menu-item.html">Add Menu Item</a></li>
@@ -34,21 +35,10 @@
                 <h1>Feedback List</h1>
                 <?php
                 // Database connection parameters
-                $servername = "localhost";
-                $username = "root";
-                $password = " ";
-                $dbname = "gallery_cafe";
-
-                // Create connection
-                $conn = mysqli_connect($servername, $username, $password, $dbname);
-
-                // Check connection
-                if (!$conn) {
-                    die("Connection failed: " . mysqli_connect_error());
-                }
+               include("../dataBaseConnection.php");
 
                 // Fetch feedback from database
-                $sql = "SELECT name, email, subject, feedback FROM feedback";
+                $sql = "SELECT name, email, subject, message FROM feedback";
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
@@ -69,7 +59,7 @@
                         echo '<td>' . htmlspecialchars($row['name']) . '</td>';
                         echo '<td>' . htmlspecialchars($row['email']) . '</td>';
                         echo '<td>' . htmlspecialchars($row['subject']) . '</td>';
-                        echo '<td>' . htmlspecialchars($row['feedback']) . '</td>';
+                        echo '<td>' . htmlspecialchars($row['message']) . '</td>';
                         echo '</tr>';
                     }
                     

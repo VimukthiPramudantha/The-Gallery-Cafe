@@ -2,6 +2,7 @@
   <head>
     <title>The Gallery Café - About</title>
     <link rel="stylesheet" href="../CSS/about.css" />
+    <link rel="stylesheet" href="../CSS/navbar.css">
   </head>
   <body>
     <header>

@@ -72,13 +72,15 @@ mysqli_close($conn);
         <aside>
         <h2>Admin Dashboard </h2>
         <ul>
+        <li><a href="./Home.php">Home</a></li>
                 <li><a href="./dashbord.php">Dashboard</a></li>
                 <li><a href="./profile.php">Profile</a></li>
                 <li><a href="./add_user.php">Users</a></li>
                 <li><a href="./add_menu.php">Manage Menu</a></li>
                 <li><a href="./admin_view_reservations.php">Reservations</a></li>
-                <li><a href="./view_feedback.php">Feedback</a></li>
                 <li><a href="#">Promotions</a></li>
+                <li><a href="./view_feedback.php">Feedback</a></li>
+                
             </ul>
         </aside>
         <main>

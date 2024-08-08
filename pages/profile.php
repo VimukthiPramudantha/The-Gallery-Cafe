@@ -56,6 +56,7 @@ mysqli_close($conn);
         <aside>
         <h2 style="color: orange;">Admin Dashboard</h2>
             <ul>
+            <li><a href="./Home.php">Home</a></li>
                 <li><a href="./dashbord.php">Dashboard</a></li>
                 <li><a href="">Profile</a></li>
                 <li><a href="./add_user.php">Users</a></li>

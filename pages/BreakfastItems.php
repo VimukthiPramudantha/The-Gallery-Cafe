@@ -1,77 +1,109 @@
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "gallery_cafe";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-// Retrieve menu data
-$menu_id = 4; // Adjust to the correct menu_id based on your data
-
-// Fetch menu items
-$sql_items = "SELECT * FROM menu_item WHERE menu_id = $menu_id";
-$result_items = mysqli_query($conn, $sql_items);
-
-// Check if there are results
-if (!$result_items) {
-    die("Query failed: " . mysqli_error($conn));
-}
-
-$items = [];
-while ($row = mysqli_fetch_assoc($result_items)) {
-    // Encode the image data to base64
-    $row['image'] = base64_encode($row['image']);
-    $items[] = $row;
-}
-
-// Close connection
-mysqli_close($conn);
+<?php  
+session_start();
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>The Gallery Cafe - Menu</title>
-    <link rel="stylesheet" href="./BreakfastItems.css" />
+    <link rel="stylesheet" href="../css/MainDishes.css" />
 </head>
 <body>
     <header>
-        <div class="topnav">
-            <a href="../index/Home.html" class="navbar">Home</a>
-            <a href="../menu.html" class="navbar" style="color: orange">Menu</a>
-            <a href="../Specials page/specials.html" class="navbar">Specials</a>
-            <a href="../reservations page/reservations.html" class="navbar">Reservations</a>
-            <a href="../Contact Us page/contact.html" class="navbar">Contact Us</a>
-        </div>
+        <?php include('./navbar.php'); ?>
         <div id="hAbout">
-            <h1>Breakfast Items</h1>
+            <h1>Breakfast </h1>
         </div>
     </header>
     <main>
         <div id="items">
             <section id="selection">
-                <?php foreach ($items as $item): ?>
-                <div class="dis">
-                    <div>
-                        <h2 class="h2"><?php echo htmlspecialchars($item['name']); ?></h2>
-                        <img src="data:image/png;base64,<?php echo $item['image']; ?>" alt="" class="image" />
-                        <button class="add">Add To Cart</button>
-                        <div>
-                            <p><?php echo htmlspecialchars($item['description']); ?></p>
-                            <p><strong>Price:</strong> $<?php echo number_format($item['price'], 2); ?></p>
-                        </div>
-                    </div>
-                </div>
-                <?php endforeach; ?>
+                <?php
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "gallery_cafe";
+
+                // Create connection
+                $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+                // Check connection
+                if (!$conn) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+
+                // Retrieve menu data for Main Dishes
+                $sql = "SELECT id, name, description, price, image FROM menu_item WHERE category_name = 'Breakfast' AND menu_id = 4";
+                $result = mysqli_query($conn, $sql);
+
+                if (mysqli_num_rows($result) > 0) {
+                    // Output data of each row
+                    while($row = mysqli_fetch_assoc($result)) {
+                        echo "<div class='dis'>";
+                        echo "<div>";
+                        echo "<h2 class='h2'>" . htmlspecialchars($row["name"]) . "</h2>";
+
+                        // Check if image data is present
+                        if ($row['image']) {
+                            echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '" alt="" class="image" />';
+                        }
+
+                        // Form for adding item to cart
+                        echo "<form action='add_to_cart.php' method='POST'>";
+                        echo "<input type='hidden' name='item_id' value='" . htmlspecialchars($row['id']) . "'>";
+                        echo "<input type='hidden' name='item_name' value='" . htmlspecialchars($row['name']) . "'>";
+                        echo "<input type='hidden' name='price' value='" . htmlspecialchars($row['price']) . "'>";
+                        echo "<button type='submit' class='add'>Add To Cart</button>";
+                        echo "</form>";
+
+                        echo "<div>";
+                        echo "<p>" . htmlspecialchars($row["description"]) . "</p>";
+                        echo "<p><strong>Price: </strong>" . number_format($row["price"], 2) . "</p>"; // Display price with 2 decimal places
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
+                    }
+                } else {
+                    echo "No items found.";
+                }
+
+                mysqli_close($conn);
+                ?>
             </section>
         </div>
     </main>
+    <hr width="100%" size="2" noshade color="orange" style="margin-top: 80px; margin-bottom: 50px" />
+    <div id="contact">
+        <table>
+            <tr>
+                <th><img src="../img/address.png" alt="" /></th>
+                <th><img src="../img/Email.png" alt="" /></th>
+                <th><img src="../img/phone.png" alt="" /></th>
+                <th><img src="../img/icons8-time-machine-100.png" alt="" /></th>
+            </tr>
+            <tr style="text-align: center">
+                <td><h2>Address</h2></td>
+                <td><h2>Email</h2></td>
+                <td><h2>Phone</h2></td>
+                <td><h2>Opening Time</h2></td>
+            </tr>
+            <tr style="text-align: center">
+                <td>
+                    The Gallery Cafe<br />
+                    123 Colombo Street<br />
+                    Galle, Southern Province<br />
+                    Sri Lanka 80000
+                </td>
+                <td style="font-size: 20px">
+                    <a href="mailto:info@thegallerycafe.lk">info@thegallerycafe.lk</a>
+                </td>
+                <td style="font-size: 20px">+94 77 123 4567</td>
+                <td style="font-size: 20px">
+                    Opening Time: 8:00 AM<br />
+                    Closing Time: 10:00 PM
+                </td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

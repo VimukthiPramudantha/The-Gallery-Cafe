@@ -1,3 +1,7 @@
+<?php  
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +10,7 @@
 </head>
 <body>
     <header>
-        <?php include('../navbar.php') ?> 
+        <?php include('./navbar.php') ?> 
         <div id="hAbout">
             <h1>Cold Beverages</h1>
         </div>
@@ -30,7 +34,7 @@
                 }
 
                 // Retrieve menu data
-                $sql = "SELECT name, description, price, image FROM menu_item WHERE category_name = 'Cold Beverages'";
+                $sql = "SELECT id, name, description, price, image FROM menu_item WHERE category_name = 'Cold Beverages'";
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
@@ -39,12 +43,19 @@
                         echo "<div class='dis'>";
                         echo "<div>";
                         echo "<h2 class='h2'>" . htmlspecialchars($row["name"]) . "</h2>";
+
                         if (!empty($row['image'])) {
                             echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '" alt="" class="image" />';
                         }
-                        echo "<button class='add'>Add To Cart</button>";
+                        echo "<form action='add_to_cart.php' method='POST'>";
+                        echo "<input type='hidden' name='item_id' value='" . htmlspecialchars($row["id"]) . "'>";
+                        echo "<input type='hidden' name='item_name' value='" . htmlspecialchars($row["name"]) . "'>";
+                        echo "<input type='hidden' name='price' value='" . htmlspecialchars($row["price"]) . "'>";
+                        echo "<button type='submit' class='add'>Add To Cart</button>";
+                        echo "</form>";
                         echo "<div>";
                         echo "<p>" . htmlspecialchars($row["description"]) . "</p>";
+                        echo "<p>" . htmlspecialchars($row["price"]) . "</p>";
                         echo "</div>";
                         echo "</div>";
                         echo "</div>";

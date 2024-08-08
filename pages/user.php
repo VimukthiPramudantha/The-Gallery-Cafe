@@ -4,25 +4,25 @@ include('../dataBaseConnection.php');
 
 // Check if user is logged in
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'customer') {
-    header("Location: .././login/login.php");
+    header("Location: ./login.php");
     exit();
 }
 
 $user_id = $_SESSION['user_id'];
 
 // Fetch user profile details
-$sql = "SELECT * FROM users WHERE id = $user_id";
-$result = mysqli_query($conn, $sql);
+$sqli = "SELECT * FROM users WHERE id = $user_id";
+$result = mysqli_query($conn, $sqli);
 
 $profile = [];
 if (mysqli_num_rows($result) > 0) {
     $profile = mysqli_fetch_assoc($result);
 }
 
-// Fetch user reservations with the new foreign key
-$sql = "SELECT r.*, t.num_of_people, t.date AS table_date, t.time AS table_time
-        FROM reservation_details r
-        JOIN find_table t ON r.table_id = t.table_id
+// Fetch user reservations
+$sql = "SELECT r.*, t.table_no
+        FROM reservations r
+        JOIN tables t ON r.table_id = t.id
         WHERE r.user_id = $user_id";
 $reservations = mysqli_query($conn, $sql);
 
@@ -42,7 +42,9 @@ mysqli_close($conn);
         <nav class="sidebar">
             <h2>User Dashboard</h2>
             <ul>
+                <li><a href="./Home.php">Home</a></li>
                 <li><a href="#profile" class="active">Profile</a></li>
+                <li><a href="cart.php">Cart</a></li>
                 <li><a href="logout.php">Logout</a></li>
             </ul>
         </nav>
@@ -59,7 +61,7 @@ mysqli_close($conn);
                 <h2>Profile</h2>
                 <div class="profile-details">
                     <p>Username: <span><?php echo htmlspecialchars($profile['username']); ?></span></p>
-                    <p>Full Name: <span><?php echo htmlspecialchars($profile['firstName'] . ' ' . htmlspecialchars($profile['lastName'])); ?></span></p>
+                    <p>Full Name: <span><?php echo htmlspecialchars($profile['firstName'] . ' ' . $profile['lastName']); ?></span></p>
                 </div>
             </section>
             <section id="reservations" class="content-section">
@@ -69,10 +71,13 @@ mysqli_close($conn);
                         <?php while ($reservation = mysqli_fetch_assoc($reservations)) { ?>
                             <div class="reservation-card">
                                 <h3>Reservation #<?php echo htmlspecialchars($reservation['id']); ?></h3>
-                                <p>Date: <?php echo htmlspecialchars($reservation['table_date']); ?></p>
-                                <p>Time: <?php echo htmlspecialchars($reservation['table_time']); ?></p>
+                                <p>Date: <?php echo htmlspecialchars($reservation['reservation_date']); ?></p>
+                                <p>Time: <?php echo htmlspecialchars($reservation['reservation_time']); ?></p>
+                                <p>Table: <?php echo htmlspecialchars($reservation['table_no']); ?></p>
                                 <p>Guests: <?php echo htmlspecialchars($reservation['num_of_people']); ?></p>
-                                <a href="./edit_reservation.php?id=<?php echo htmlspecialchars($reservation['id']); ?>"></a>
+                                <p>Occasion: <?php echo htmlspecialchars($reservation['occasion']); ?></p>
+                                <p>Special Request: <?php echo htmlspecialchars($reservation['special_request']); ?></p>
+                                <p>Status: <?php echo htmlspecialchars($reservation['status']); ?></p>
                             </div>
                         <?php } ?>
                     <?php } else { ?>

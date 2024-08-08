@@ -1,27 +1,3 @@
-.topnav {
-  padding-top: 40px;
-  padding-right: 50px;
-  overflow: hidden;
-  /* background-color: black; */
-  margin-left: 10px;
-  font-family: "Gill Sans", sans-serif;
-}
-.topnav a {
-  float: right;
-  color: whitesmoke;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-.topnav a:hover {
-  /* background-color: #fdebd0; */
-  color: orange;
-}
-.topnav a.active {
-  /* background-color: #04AA6D; */
-  color: white;
-}
 body {
   background-color: black;
 }

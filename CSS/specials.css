@@ -2,29 +2,62 @@ body {
   background-color: black;
 }
 .topnav {
-  padding-top: 40px;
-  padding-right: 50px;
-  overflow: hidden;
-  /* background-color: black; */
-  margin-left: 10px;
-  font-family: "Gill Sans", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Optional: Background for better readability */
 }
-.topnav a {
-  float: right;
+
+.topnav .nav-items {
+  display: flex;
+}
+
+.topnav .nav-items a {
   color: whitesmoke;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 24px;
 }
-.topnav a:hover {
-  /* background-color: #fdebd0; */
+
+.topnav .nav-items a:hover {
   color: orange;
 }
-.topnav a.active {
-  /* background-color: #04AA6D; */
+
+.topnav .nav-items a.active {
   color: white;
 }
+
+.topnav .login-button {
+  background-color: orange;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 17px;
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+.topnav .login-button:hover {
+  background-color: darkorange;
+}
+
+.topnav i {
+  font-size: 20px; /* Adjust size */
+  vertical-align: middle; /* Align with text */
+  margin-left: 10px; /* Space between icon and text */
+  color: whitesmoke; /* Icon color */
+}
+
+.topnav i:hover {
+  color: whitesmoke; /* Color on hover */
+}
+
 header {
   position: relative;
   height: 500px;

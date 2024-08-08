@@ -1,3 +1,7 @@
+<?php  
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,9 +10,9 @@
 </head>
 <body>
     <header>
-        <?php include('../navbar.php') ?>
+        <?php include('./navbar.php'); ?>
         <div id="hAbout">
-            <h1>Pastres</h1>
+            <h1>Pastries</h1>
         </div>
     </header>
     <main>
@@ -28,8 +32,8 @@
                     die("Connection failed: " . mysqli_connect_error());
                 }
 
-                // Retrieve menu data
-                $sql = "SELECT name, description,image, price FROM menu_item WHERE category_name = 'Pastries' && menu_id = 1";
+                // Retrieve menu data for Pastries
+                $sql = "SELECT id, name, description, price, image FROM menu_item WHERE category_name = 'Pastries' && menu_id = 1";
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
@@ -37,20 +41,30 @@
                     while($row = mysqli_fetch_assoc($result)) {
                         echo "<div class='dis'>";
                         echo "<div>";
-                        echo "<h2 class='h2'>" . $row["name"] . "</h2>";
+                        echo "<h2 class='h2'>" . htmlspecialchars($row["name"]) . "</h2>";
+
+                        // Check if image data is present
                         if ($row['image']) {
                             echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '" alt="" class="image" />';
                         }
-                        echo "<button class='add'>Add To Cart</button>";
+
+                        // Form for adding item to cart
+                        echo "<form action='add_to_cart.php' method='POST'>";
+                        echo "<input type='hidden' name='item_id' value='" . htmlspecialchars($row['id']) . "'>";
+                        echo "<input type='hidden' name='item_name' value='" . htmlspecialchars($row['name']) . "'>";
+                        echo "<input type='hidden' name='price' value='" . htmlspecialchars($row['price']) . "'>";
+                        echo "<button type='submit' class='add'>Add To Cart</button>";
+                        echo "</form>";
+
                         echo "<div>";
-                        echo "<p>" . $row["description"] . "</p>";
+                        echo "<p>" . htmlspecialchars($row["description"]) . "</p>";
                         echo "<p><strong>Price: </strong>" . number_format($row["price"], 2) . "</p>"; // Display price with 2 decimal places
                         echo "</div>";
                         echo "</div>";
                         echo "</div>";
                     }
                 } else {
-                    echo "0 results";
+                    echo "No items found.";
                 }
 
                 mysqli_close($conn);
@@ -58,7 +72,6 @@
             </section>
         </div>
     </main>
-
     <hr width="100%" size="2" noshade color="orange" style="margin-top: 80px; margin-bottom: 50px" />
     <div id="contact">
         <table>

@@ -1,3 +1,7 @@
+<?php 
+session_start();
+?>
+
 <html>
   <head>
     <title>The Gallery Cafe - Menu</title>
@@ -11,6 +15,9 @@
       </div>
     </header>
     <main>
+      <div class="header">
+      <a href="./cart.php"><button>Cart</button></a>
+      </div>
       <div id="dis">
         <h1 style="font-family: Poppins, Helvetica, Arial, sans-serif">
           Our Commitment to You
@@ -102,17 +109,17 @@
       
       <div id="Container">
         <div class="box">
-          <a href="./TraditionalBeverages.html"><img src="../img/Chinese.png" alt="" />
+          <a href="./TraditionalBeverages.php"><img src="../img/Chinese.png" alt="" />
           <p>Traditional Beverages</p></a>
         </div>
 
         <div class="box">
-          <a href="./BreakfastItems.html"><img src="../img/Breakfast Items.png" alt="" />
+          <a href="./BreakfastItems.php"><img src="../img/Breakfast Items.png" alt="" />
           <p>Breakfast Items</p></a>
         </div>
 
         <div class="box">
-          <a href="./cMainDishes.html"><img src="../img/Main Dishes.png" alt="" />
+          <a href="./cMainDishes.php"><img src="../img/Main Dishes.png" alt="" />
           <p>Main Dishes</p></a>
         </div>
 

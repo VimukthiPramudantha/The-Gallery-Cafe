@@ -15,24 +15,25 @@ if (!$conn) {
 }
 
 // Initialize variables
-$name = $contact_number = $email = $occasion = $special_request = $new_table_id = "";
+$name = $contact_number = $email = $occasion = $special_request = "";
 
 // Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
-    $name = $_POST['name'];
-    $contact_number = $_POST['contact_number'];
-    $email = $_POST['email'];
-    $occasion = isset($_POST['occasion']) ? $_POST['occasion'] : null;
-    $special_request = isset($_POST['special_request']) ? $_POST['special_request'] : null;
-    $new_table_id = $_POST['table_id']; // Add this line to get the table ID from the form
-    $userid = $_SESSION['user_id'];
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $contact_number = mysqli_real_escape_string($conn, $_POST['contact_number']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $occasion = isset($_POST['occasion']) ? mysqli_real_escape_string($conn, $_POST['occasion']) : null;
+    $special_request = isset($_POST['special_request']) ? mysqli_real_escape_string($conn, $_POST['special_request']) : null;
+    $user_id = $_SESSION['user_id'];
+    $reservation_id = $_SESSION['reservation_id'];
 
-    // Prepare the SQL statement
-    $sql = "INSERT INTO reservation_details (name, contact_number, email, occasion, special_request, user_id, table_id)
-            VALUES ('$name', '$contact_number', '$email', '$occasion', '$special_request', '$userid', '$new_table_id')"; // Add new_table_id
+    // Prepare SQL statement
+    $sql = "UPDATE reservations
+            SET name = '$name', contact_number = '$contact_number', email = '$email', occasion = '$occasion', special_request = '$special_request', user_id = '$user_id'
+            WHERE id = '$reservation_id'";
 
-    // Execute the query
+    // Execute query
     if (mysqli_query($conn, $sql)) {
         echo "<script>
                 alert('Reservation successful!');
@@ -54,7 +55,6 @@ mysqli_close($conn);
     <link rel="stylesheet" href="../CSS/reservations.css" />
 </head>
 <body>
-    
     <header>
         <?php include('./navbar.php') ?>
         <div id="hAbout">
@@ -82,21 +82,6 @@ mysqli_close($conn);
                                 <option value="business_meal">Business Meal</option>
                             </select>
                             <input type="text" name="special_request" placeholder="Special Request (Optional)" class="box" />
-                            <select name="table_id" class="box" required>
-                                <option label="Select Table" disabled selected>Select Table</option>
-                                <!-- Populate the dropdown with available tables from the database -->
-                                <?php
-                                // Fetch tables from the database
-                                $tables_sql = "SELECT table_id, num_of_people, date, time FROM find_table";
-                                $tables_result = mysqli_query($conn, $tables_sql);
-
-                                if (mysqli_num_rows($tables_result) > 0) {
-                                    while ($table = mysqli_fetch_assoc($tables_result)) {
-                                        echo '<option value="' . $table['table_id'] . '">Table for ' . $table['num_of_people'] . ' on ' . $table['date'] . ' at ' . $table['time'] . '</option>';
-                                    }
-                                }
-                                ?>
-                            </select>
                             <br />
                             <button id="next" type="submit">Submit</button>
                         </form>
@@ -138,6 +123,5 @@ mysqli_close($conn);
             </tr>
         </table>
     </div>
-    
 </body>
 </html>

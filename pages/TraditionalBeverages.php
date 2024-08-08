@@ -6,13 +6,14 @@ session_start();
 <html>
 <head>
     <title>The Gallery Cafe - Menu</title>
-    <link rel="stylesheet" href="../css/PastriesandBreads.css">
+    <link rel="stylesheet" href="../CSS/TraditionalBeverages.css" />
+    <link rel="stylesheet" href="../navbar.css">
 </head>
 <body>
     <header>
-        <?php include('./navbar.php'); ?>
+        <?php include('./navbar.php') ?>
         <div id="hAbout">
-            <h1>Pastries and Breads</h1>
+            <h1>Traditional Beverages</h1>
         </div>
     </header>
     <main>
@@ -32,8 +33,8 @@ session_start();
                     die("Connection failed: " . mysqli_connect_error());
                 }
 
-                // Retrieve menu data
-                $sql = "SELECT id, name, description, image, price FROM menu_item WHERE category_name = 'Pastries and Breads' && menu_id = 2";
+                // Retrieve menu data for Traditional Beverages
+                $sql = "SELECT id, name, description, price, image FROM menu_item WHERE category_name = 'Traditional Beverages' AND menu_id = 1";
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
@@ -42,10 +43,10 @@ session_start();
                         echo "<div class='dis'>";
                         echo "<div>";
                         echo "<h2 class='h2'>" . htmlspecialchars($row["name"]) . "</h2>";
-                        
+
                         // Check if image data is present
                         if ($row['image']) {
-                            echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '" alt="" class="image" />';
+                            echo '<img src="./img/' . htmlspecialchars($row['image']) . '" alt="" class="image" />';
                         }
 
                         // Form for adding item to cart
@@ -58,7 +59,7 @@ session_start();
 
                         echo "<div>";
                         echo "<p>" . htmlspecialchars($row["description"]) . "</p>";
-                        echo "<p><strong>Price: </strong>$" . number_format($row["price"], 2) . "</p>"; // Display price with 2 decimal places
+                        echo "<p><strong>Price: </strong>" . number_format($row["price"], 2) . "</p>"; // Display price with 2 decimal places
                         echo "</div>";
                         echo "</div>";
                         echo "</div>";

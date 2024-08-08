@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $servername = "localhost";
     $username = "root";
@@ -18,16 +19,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $num_of_people = mysqli_real_escape_string($conn, $_POST['People']);
     $date = mysqli_real_escape_string($conn, $_POST['Date']);
     $time = mysqli_real_escape_string($conn, $_POST['Time']);
-    $table = mysqli_real_escape_string($conn, $_POST['table']);
-    
+    $table_no = mysqli_real_escape_string($conn, $_POST['table_no']);
 
     // Prepare and execute SQL statement
-    $sql = "INSERT INTO find_table (num_of_people, date, time, table_id) VALUES ('$num_of_people', '$date', '$time',' $table')";
+    $sql = "INSERT INTO reservations (table_id, num_of_people, reservation_date, reservation_time) VALUES ('$table_no', '$num_of_people', '$date', '$time')";
 
     if (mysqli_query($conn, $sql)) {
+        $_SESSION['reservation_id'] = mysqli_insert_id($conn);
         echo "<script>
-        window.location.href = 'reservations_details.php';
-    </script>";    } else {
+                window.location.href = 'reservations_details.php';
+              </script>";
+    } else {
         echo "<script>showAlert('Error: " . mysqli_error($conn) . "', 'error');</script>";
     }
 
@@ -72,16 +74,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <h2>Find Table</h2>
                         <form action="reservations.php" method="post">
                             <select name="People" class="box" required>
-                                <option value="2 people">2 People</option>
-                                <option value="3 people">3 People</option>
-                                <option value="4 people">4 People</option>
-                                <option value="5 people">5 People</option>
-                                <option value="6 people">6 People</option>
+                                <option value="2">2 People</option>
+                                <option value="3">3 People</option>
+                                <option value="4">4 People</option>
+                                <option value="5">5 People</option>
+                                <option value="6">6 People</option>
                             </select>
                             <input type="date" name="Date" class="box" required />
-
                             <select name="Time" class="box" required>
-                                <!-- Time options -->
                                 <option value="06:00">6:00 am</option>
                                 <option value="06:30">6:30 am</option>
                                 <option value="07:00">7:00 am</option>
@@ -119,8 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <option value="23:00">11:00 pm</option>
                                 <option value="23:30">11:30 pm</option>
                             </select>
-                            <select name="table" class="box" required>
-                                <!-- Time options -->
+                            <select name="table_no" class="box" required>
                                 <option value="1">Table 01</option>
                                 <option value="2">Table 02</option>
                                 <option value="3">Table 03</option>
