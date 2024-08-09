@@ -3,7 +3,7 @@ session_start();
 
 include('../dataBaseConnection.php');
 
-// Database configuration
+
 
 ?>
 
@@ -11,7 +11,7 @@ include('../dataBaseConnection.php');
   <head>
     <title>The Gallery Cafe</title>
     <link rel="stylesheet" href="../CSS/home.css" />
-    <link rel="shortcut icon" href="./images/Logo.png" type="image/x-icon" style="border-radius: 100%;">
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../CSS/navbar.css">
 

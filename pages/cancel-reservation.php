@@ -4,15 +4,14 @@ $username = "root";
 $password = "";
 $dbname = "gallery_cafe";
 
-// Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// Check connection
+
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Handle Cancel Action
+
 if (isset($_POST['cancel'])) {
     $reservation_id = (int)$_POST['reservation_id'];
     $sql = "UPDATE reservation_details SET status = 'canceled' WHERE id = $reservation_id";
@@ -29,6 +28,6 @@ echo "<script>
 }
 }
 
-// Close the connection
+
 mysqli_close($conn);
 ?>

@@ -7,13 +7,13 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 }
 include('../dataBaseConnection.php');
 
-// Fetch user count
+
 $user_count_sql = "SELECT COUNT(*) as user_count FROM users";
 $user_count_result = mysqli_query($conn, $user_count_sql);
 $user_count_row = mysqli_fetch_assoc($user_count_result);
 $user_count = $user_count_row['user_count'];
 
-// Fetch reservation count
+
 $reservation_count_sql = "SELECT COUNT(*) as reservation_count FROM reservations";
 $reservation_count_result = mysqli_query($conn, $reservation_count_sql);
 $reservation_count_row = mysqli_fetch_assoc($reservation_count_result);
@@ -27,6 +27,7 @@ mysqli_close($conn);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../CSS/dashbord.css">
 </head>
@@ -35,14 +36,16 @@ mysqli_close($conn);
         <nav class="sidebar">
             <h2>Admin Dashboard </h2>
             <ul>
-            <li><a href="./Home.php">Home</a></li>
-                <li><a href="./profile.php">Profile</a></li>
-                <li><a href="./add_user.php">Users</a></li>
-                <li><a href="./add_menu.php">Manage Menu</a></li>
-                <li><a href="./admin_view_reservations.php">Reservations</a></li>
-                <li><a href="./promotion.php">Promotions</a></li>
-                <li><a href="./view_feedback.php">Feedback</a></li>
-            </ul>
+                    <li><a href="./Home.php">Home</a></li>
+                    <li><a href="./dashbord.php">Dashboard</a></li>
+                    <li><a href="./profile.php">Profile</a></li>
+                    <li><a href="./add_user.php">Users</a></li>
+                    <li><a href="./add_menu.php">Manage Menu</a></li>
+                    <li><a href="./manage_menu_items.php">Delete Menu Items</a></li>
+                    <li><a href="./admin_view_reservations.php">Reservations</a></li>
+                    <li><a href="./promotion.php">Promotions</a></li>
+                    <li><a href="./view_feedback.php">Feedback</a></li>
+                </ul>
         </nav>
 
         <div class="main-content">

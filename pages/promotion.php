@@ -4,15 +4,14 @@ $username = "root";
 $password = "";
 $dbname = "gallery_cafe";
 
-// Create connection
+
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// Check connection
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Handle add/edit promotion
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $description = mysqli_real_escape_string($conn, $_POST['description']);
@@ -27,24 +26,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (mysqli_query($conn, $sql)) {
-        echo "Record updated successfully";
+        echo "<script>
+                alert('Record updated successfully!');
+                window.location.href = './promotion.php';
+              </script>";
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 }
 
-// Handle delete promotion
+
 if (isset($_GET['delete'])) {
     $id = mysqli_real_escape_string($conn, $_GET['delete']);
     $sql = "DELETE FROM promotions WHERE id=$id";
     if (mysqli_query($conn, $sql)) {
-        echo "Record deleted successfully";
+        echo "<script>
+                alert('Record deleted successfully!');
+                window.location.href = './promotion.php';
+              </script>";
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 }
 
-// Fetch all promotions
+
 $sql = "SELECT * FROM promotions";
 $result = mysqli_query($conn, $sql);
 
@@ -63,6 +68,7 @@ mysqli_close($conn);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
     <title>Admin Dashboard - Promotions</title>
     <link rel="stylesheet" href="../CSS/premotions.css">
 </head>
@@ -72,16 +78,16 @@ mysqli_close($conn);
         <aside>
         <h2>Admin Dashboard </h2>
         <ul>
-        <li><a href="./Home.php">Home</a></li>
-                <li><a href="./dashbord.php">Dashboard</a></li>
-                <li><a href="./profile.php">Profile</a></li>
-                <li><a href="./add_user.php">Users</a></li>
-                <li><a href="./add_menu.php">Manage Menu</a></li>
-                <li><a href="./admin_view_reservations.php">Reservations</a></li>
-                <li><a href="#">Promotions</a></li>
-                <li><a href="./view_feedback.php">Feedback</a></li>
-                
-            </ul>
+                    <li><a href="./Home.php">Home</a></li>
+                    <li><a href="./dashbord.php">Dashboard</a></li>
+                    <li><a href="./profile.php">Profile</a></li>
+                    <li><a href="./add_user.php">Users</a></li>
+                    <li><a href="./add_menu.php">Manage Menu</a></li>
+                    <li><a href="./manage_menu_items.php">Delete Menu Items</a></li>
+                    <li><a href="./admin_view_reservations.php">Reservations</a></li>
+                    <li><a href="./promotion.php">Promotions</a></li>
+                    <li><a href="./view_feedback.php">Feedback</a></li>
+                </ul>
         </aside>
         <main>
             <div class="main-header">
@@ -103,7 +109,7 @@ mysqli_close($conn);
         </main>
     </div>
    
-    <!-- Promotion Form Modal -->
+    
     <div id="promotionForm" class="modal">
         <div class="modal-content">
             <span class="close" onclick="document.getElementById('promotionForm').style.display='none'">&times;</span>

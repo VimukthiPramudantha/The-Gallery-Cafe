@@ -1,14 +1,16 @@
 <?php
+session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "gallery_cafe";
 
-    // Create connection
+
     $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-    // Check connection
+  
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
@@ -35,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
     <title>The Gallery Cafe - Contact Us</title>
     <link rel="stylesheet" href="../CSS/contact.css" />
 </head>

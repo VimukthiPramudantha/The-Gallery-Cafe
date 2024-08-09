@@ -6,6 +6,7 @@ session_start();
   <head>
     <title>The Gallery Cafe - Menu</title>
     <link rel="stylesheet" href="../CSS/menu.css" />
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
   </head>
   <body>
     <header>

@@ -2,7 +2,7 @@
 session_start();
 include('../dataBaseConnection.php'); // Include your database connection
 
-// Check if user is logged in
+
 if (!isset($_SESSION['user_id'])) {
     die("You must be logged in to perform this action.");
 }
@@ -11,7 +11,7 @@ if (isset($_POST['item_id'])) {
     $item_id = intval($_POST['item_id']);
     $user_id = $_SESSION['user_id'];
 
-    // Delete item from cart
+   
     $sql = "DELETE FROM cart WHERE item_id = ? AND user_id = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, 'ii', $item_id, $user_id);
@@ -25,6 +25,6 @@ if (isset($_POST['item_id'])) {
     mysqli_stmt_close($stmt);
 }
 
-// Close the database connection
+
 mysqli_close($conn);
 ?>

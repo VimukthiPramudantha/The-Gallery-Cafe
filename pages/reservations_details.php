@@ -6,20 +6,20 @@ $username = "root";
 $password = "";
 $dbname = "gallery_cafe";
 
-// Create connection
+
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// Check connection
+
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Initialize variables
+
 $name = $contact_number = $email = $occasion = $special_request = "";
 
-// Process form submission
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
+   
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $contact_number = mysqli_real_escape_string($conn, $_POST['contact_number']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -28,12 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = $_SESSION['user_id'];
     $reservation_id = $_SESSION['reservation_id'];
 
-    // Prepare SQL statement
+   
     $sql = "UPDATE reservations
             SET name = '$name', contact_number = '$contact_number', email = '$email', occasion = '$occasion', special_request = '$special_request', user_id = '$user_id'
             WHERE id = '$reservation_id'";
 
-    // Execute query
+  
     if (mysqli_query($conn, $sql)) {
         echo "<script>
                 alert('Reservation successful!');
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Close connection
+
 mysqli_close($conn);
 ?>
 
@@ -53,6 +53,7 @@ mysqli_close($conn);
 <head>
     <title>The Gallery Cafe - Reservations</title>
     <link rel="stylesheet" href="../CSS/reservations.css" />
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
 </head>
 <body>
     <header>

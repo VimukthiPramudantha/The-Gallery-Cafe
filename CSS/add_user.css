@@ -1,41 +1,9 @@
-/* add-user.css */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: white;
-    color: #fff;
-    width: 100%;
-}
-
-header .logo {
-    font-size: 1.5rem;
-}
-
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-    margin: 0;
-    padding: 0;
-}
-
-header nav ul li {
-    display: inline;
-}
-
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
 }
 
 .container {
@@ -72,16 +40,18 @@ aside ul li a {
     border-radius: 4px;
     transition: background-color 0.3s;
 }
+
 aside ul li a:hover {
     background-color: #34495e;
 }
+
 aside ul li a.active {
     background-color: #007bff;
     color: #fff;
 }
 
 main {
-    margin-left: 220px; /* Adjust based on the sidebar width */
+    margin-left: 250px; 
     padding: 2rem;
     flex: 1;
 }
@@ -94,10 +64,13 @@ main {
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
-aside h2{
+
+aside h2 {
     font-family: Georgia, serif;
     font-size: 23px;
+    text-decoration: none;
 }
+
 .form-container h1 {
     margin-bottom: 1.5rem;
     text-align: center;
@@ -113,7 +86,6 @@ aside h2{
 .form-container input[type="text"],
 .form-container input[type="email"],
 .form-container input[type="password"],
-.form-container input[type="file"],
 .form-container select {
     width: 100%;
     padding: 0.5rem;
@@ -146,9 +118,38 @@ footer {
     position: fixed;
     bottom: 0;
 }
-.user-list{
-    margin-left: 20px;
+
+.user-list {
+    margin-top: 20px; 
 }
-a{
-    text-decoration: none;
+
+.user-list h2 {
+    text-align: center;
+    color: black;
+    margin-bottom: 1rem;
+}
+
+.user-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-list ul li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    padding: 15px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.user-list ul li p {
+    margin: 0;
+    padding: 0.5rem 0;
+}
+
+.user-list ul li p strong {
+    display: inline-block;
+    width: 120px;
 }

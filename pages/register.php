@@ -1,16 +1,15 @@
 <?php
-// Start the session
+
 session_start();
 
 include("../dataBaseConnection.php");
 
-// Initialize variables for form data and error messages
 $firstName = $lastName = $username = $email = $password = "";
 $firstName_err = $lastName_err = $username_err = $email_err = $password_err = "";
 $message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate and sanitize input data
+    
     if (empty(trim($_POST['firstName']))) {
         $firstName_err = "First Name is required.";
     } else {
@@ -41,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = trim($_POST['password']);
     }
 
-    // Check for existing username or email
+    
     if (empty($firstName_err) && empty($lastName_err) && empty($username_err) && empty($email_err) && empty($password_err)) {
         $check_sql = "SELECT * FROM users WHERE username='$username' OR email='$email'";
         $check_result = $conn->query($check_sql);
@@ -49,23 +48,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($check_result->num_rows > 0) {
             $message = "Username or email already exists!";
         } else {
-            // Hash the password
+            
             $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-            // Insert the new user into the database
+            
             $sql = "INSERT INTO users (firstName, lastName, username, password, email, role)
                     VALUES ('$firstName', '$lastName', '$username', '$hashed_password', '$email', 'customer')";
 
             if ($conn->query($sql) === TRUE) {
-                // Redirect to login page
-                header("Location: ../login.php");
+                
+                header("Location: ./login.php");
                 exit();
             } else {
                 $message = "Something went wrong. Please try again later.";
             }
         }
 
-        // Close the connection
+        
         mysqli_close($conn);
     }
 }
@@ -77,6 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>The Gallery Cafe - Register</title>
     <link rel="stylesheet" href="../CSS/register.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
 </head>
 <body>
     <div class="wrapper">

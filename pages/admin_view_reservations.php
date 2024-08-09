@@ -1,19 +1,19 @@
 <?php
-// Database connection parameters
+
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "gallery_cafe";
 
-// Create connection
+
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// Check connection
+
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Handle Confirm Action
+
 if (isset($_POST['confirm'])) {
     $reservation_id = (int)$_POST['reservation_id'];
     $sql = "UPDATE reservations SET status = 'Confirmed' WHERE id = $reservation_id";
@@ -24,7 +24,7 @@ if (isset($_POST['confirm'])) {
     }
 }
 
-// Handle Delete Action
+
 if (isset($_POST['delete'])) {
     $reservation_id = (int)$_POST['reservation_id'];
     $sql = "DELETE FROM reservations WHERE id = $reservation_id";
@@ -35,7 +35,7 @@ if (isset($_POST['delete'])) {
     }
 }
 
-// Fetch all reservations with table details
+
 $sql = "SELECT r.*, t.table_no, t.capacity
         FROM reservations r
         JOIN tables t ON r.table_id = t.id";
@@ -48,7 +48,7 @@ if (mysqli_num_rows($result) > 0) {
     }
 }
 
-// Close the connection
+
 mysqli_close($conn);
 ?>
 
@@ -58,6 +58,7 @@ mysqli_close($conn);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Reservations</title>
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../CSS/admin_view_reservations.css">
 </head>
 <body>
@@ -65,16 +66,16 @@ mysqli_close($conn);
         <aside>
             <h2>Admin Dashboard</h2>
             <ul>
-                <li><a href="./Home.php">Home</a></li>
-                <li><a href="./dashbord.php">Dashboard</a></li>
-                <li><a href="./profile.php">Profile</a></li>
-                <li><a href="./add_user.php">Users</a></li>
-                <li><a href="./add_menu.php">Manage Menu</a></li>
-                <li><a href="#">Reservations</a></li>
-                <li><a href="./promotion.php">Promotions</a></li>
-                <li><a href="./view_feedback.php">Feedback</a></li>
-                <li><a href="./logout.php">Logout</a></li>
-            </ul>
+                    <li><a href="./Home.php">Home</a></li>
+                    <li><a href="./dashbord.php">Dashboard</a></li>
+                    <li><a href="./profile.php">Profile</a></li>
+                    <li><a href="./add_user.php">Users</a></li>
+                    <li><a href="./add_menu.php">Manage Menu</a></li>
+                    <li><a href="./manage_menu_items.php">Delete Menu Items</a></li>
+                    <li><a href="./admin_view_reservations.php">Reservations</a></li>
+                    <li><a href="./promotion.php">Promotions</a></li>
+                    <li><a href="./view_feedback.php">Feedback</a></li>
+                </ul>
         </aside>
         <main>
             <div class="reservations-container">

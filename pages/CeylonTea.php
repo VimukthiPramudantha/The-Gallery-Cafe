@@ -6,6 +6,7 @@ session_start();
 <html>
 <head>
     <title>The Gallery Cafe - Menu</title>
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../CSS/CeylonTea.css" />
 </head>
 <body>
@@ -25,37 +26,39 @@ session_start();
                 $password = "";
                 $dbname = "gallery_cafe";
 
-                // Create connection
+                
                 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-                // Check connection
+              
                 if (!$conn) {
                     die("Connection failed: " . mysqli_connect_error());
                 }
-
-                // Retrieve menu data
+                
+              
                 $sql = "SELECT id, name, description, price, image FROM menu_item WHERE category_name = 'Ceylon Tea'";
                 $result = mysqli_query($conn, $sql);
-
+                
                 if (mysqli_num_rows($result) > 0) {
-                    // Output data of each row
+                    
                     while($row = mysqli_fetch_assoc($result)) {
                         echo "<div class='dis'>";
                         echo "<div>";
                         echo "<h2 class='h2'>" . htmlspecialchars($row["name"]) . "</h2>";
-
+                
                         if (!empty($row['image'])) {
                             echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '" alt="" class="image" />';
                         }
+                
                         echo "<form action='add_to_cart.php' method='POST'>";
-                        echo "<input type='hidden' name='item_id' value='" . htmlspecialchars($row["id"]) . "'>";
-                        echo "<input type='hidden' name='item_name' value='" . htmlspecialchars($row["name"]) . "'>";
-                        echo "<input type='hidden' name='price' value='" . htmlspecialchars($row["price"]) . "'>";
+                        echo "<input type='hidden' name='item_id' value='" . htmlspecialchars($row['id']) . "'>";
+                        echo "<input type='hidden' name='item_name' value='" . htmlspecialchars($row['name']) . "'>";
+                        echo "<input type='hidden' name='price' value='" . htmlspecialchars($row['price']) . "'>";
                         echo "<button type='submit' class='add'>Add To Cart</button>";
                         echo "</form>";
+                
                         echo "<div>";
                         echo "<p>" . htmlspecialchars($row["description"]) . "</p>";
-                        echo "<p>" . htmlspecialchars($row["price"]) . "</p>";
+                        echo "<p style='margin-top:110px;'><strong>Price: </strong>$" . number_format($row["price"], 2) . "</p>";
                         echo "</div>";
                         echo "</div>";
                         echo "</div>";
@@ -63,6 +66,7 @@ session_start();
                 } else {
                     echo "0 results";
                 }
+                
 
                 mysqli_close($conn);
                 ?>

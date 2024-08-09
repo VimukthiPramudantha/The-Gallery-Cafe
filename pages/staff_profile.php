@@ -1,16 +1,16 @@
 <?php
 session_start();
 
-// Check if the user is logged in
+
 if (!isset($_SESSION['user_id'])) {
     header('Location: ./login.php');
     exit();
 }
 
-// Database connection settings
+
 include('../dataBaseConnection.php');
 
-// Fetch user details
+
 $user_id = $_SESSION['user_id'];
 
 $sql = "SELECT username, firstname, lastname FROM users WHERE id = ?";
@@ -22,7 +22,6 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
     mysqli_stmt_close($stmt);
 }
 
-// Close database connection
 mysqli_close($conn);
 ?>
 
@@ -31,6 +30,7 @@ mysqli_close($conn);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
     <title>Staff Profile</title>
     <link rel="stylesheet" href="../CSS/staff_profile.css">
 </head>

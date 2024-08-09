@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>The Gallery Café - About</title>
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../CSS/about.css" />
     <link rel="stylesheet" href="../CSS/navbar.css">
   </head>

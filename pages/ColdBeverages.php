@@ -7,6 +7,7 @@ session_start();
 <head>
     <title>The Gallery Cafe - Menu</title>
     <link rel="stylesheet" href="../CSS/ColdBeverages.css" />
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -16,7 +17,7 @@ session_start();
         </div>
     </header>
     <main>
-        <h1 style="color: white">Coffees</h1>
+       
         <div id="items">
             <section id="selection">
                 <?php
@@ -25,25 +26,25 @@ session_start();
                 $password = "";
                 $dbname = "gallery_cafe";
 
-                // Create connection
+                
                 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-                // Check connection
+                
                 if (!$conn) {
                     die("Connection failed: " . mysqli_connect_error());
                 }
 
-                // Retrieve menu data
+             
                 $sql = "SELECT id, name, description, price, image FROM menu_item WHERE category_name = 'Cold Beverages'";
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
-                    // Output data of each row
+                
                     while($row = mysqli_fetch_assoc($result)) {
                         echo "<div class='dis'>";
                         echo "<div>";
                         echo "<h2 class='h2'>" . htmlspecialchars($row["name"]) . "</h2>";
-
+                
                         if (!empty($row['image'])) {
                             echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '" alt="" class="image" />';
                         }
@@ -55,12 +56,16 @@ session_start();
                         echo "</form>";
                         echo "<div>";
                         echo "<p>" . htmlspecialchars($row["description"]) . "</p>";
-                        echo "<p>" . htmlspecialchars($row["price"]) . "</p>";
+                        echo "<div>";
+                        echo "<p style='margin-top:110px;'>$" . htmlspecialchars($row["price"]) . "</p>";
+                        echo "</div>";
                         echo "</div>";
                         echo "</div>";
                         echo "</div>";
                     }
-                } else {
+                }
+                
+                else {
                     echo "0 results";
                 }
 

@@ -11,7 +11,7 @@ body {
     0,
     0,
     0.5
-  ); /* Optional: Background for better readability */
+  );
 }
 
 .topnav .nav-items {
@@ -48,14 +48,14 @@ body {
 }
 
 .topnav i {
-  font-size: 20px; /* Adjust size */
-  vertical-align: middle; /* Align with text */
-  margin-left: 10px; /* Space between icon and text */
-  color: whitesmoke; /* Icon color */
+  font-size: 20px;
+  vertical-align: middle;
+  margin-left: 10px; 
+  color: whitesmoke;
 }
 
 .topnav i:hover {
-  color: whitesmoke; /* Color on hover */
+  color: whitesmoke;
 }
 
 header {
@@ -98,6 +98,12 @@ header .content {
 }
 .inside {
   margin: 8% 2% 0% 2%;
+}
+.inside img{
+  width: 400px;
+  height: 350px;
+  object-fit: cover;
+  align-items: center;
 }
 h2,
 h3 {

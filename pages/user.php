@@ -2,7 +2,7 @@
 session_start();
 include('../dataBaseConnection.php');
 
-// Check if user is logged in
+
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'customer') {
     header("Location: ./login.php");
     exit();
@@ -10,7 +10,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'customer') {
 
 $user_id = $_SESSION['user_id'];
 
-// Fetch user profile details
+
 $sqli = "SELECT * FROM users WHERE id = $user_id";
 $result = mysqli_query($conn, $sqli);
 
@@ -19,7 +19,7 @@ if (mysqli_num_rows($result) > 0) {
     $profile = mysqli_fetch_assoc($result);
 }
 
-// Fetch user reservations
+
 $sql = "SELECT r.*, t.table_no
         FROM reservations r
         JOIN tables t ON r.table_id = t.id
@@ -34,6 +34,7 @@ mysqli_close($conn);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
     <title>User Dashboard</title>
     <link rel="stylesheet" href="../CSS/user.css">
 </head>

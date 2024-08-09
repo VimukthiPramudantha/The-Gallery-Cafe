@@ -8,22 +8,22 @@ $username = "root";
 $password = "";
 $dbname = "gallery_cafe";
 
-// Create connection
+
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// Check connection
+
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Retrieve menu data
-$menu_id = 1; // Adjust to the correct menu_id for Coffee items
 
-// Fetch menu items
+$menu_id = 1;
+
+
 $sql_items = "SELECT id, name, description, price, image FROM menu_item WHERE category_name = 'Coffee' AND menu_id = $menu_id";
 $result_items = mysqli_query($conn, $sql_items);
 
-// Check if there are results
+
 if (!$result_items) {
     die("Query failed: " . mysqli_error($conn));
 }
@@ -33,7 +33,7 @@ while ($row = mysqli_fetch_assoc($result_items)) {
     $items[] = $row;
 }
 
-// Close connection
+
 mysqli_close($conn);
 ?>
 
@@ -42,6 +42,7 @@ mysqli_close($conn);
 <head>
     <title>The Gallery Cafe - Menu</title>
     <link rel="stylesheet" href="../CSS/coffee.css" />
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -59,7 +60,7 @@ mysqli_close($conn);
                         <h2 class="h2"><?php echo htmlspecialchars($item['name']); ?></h2>
                         <?php if (!empty($item['image'])): ?>
                             <?php
-                            // Display the image as base64
+                            
                             $imageData = base64_encode($item['image']);
                             $src = 'data:image/png;base64,' . $imageData;
                             ?>
@@ -73,8 +74,10 @@ mysqli_close($conn);
                         </form>
                         <div>
                             <p><?php echo htmlspecialchars($item['description']); ?></p>
-                            <p><strong>Price:</strong> Rs.<?php echo number_format($item['price'], 2); ?></p>
+                            <div id="price">
+                            <p style="margin-top:110px ;"><strong>Price:</strong> $.<?php echo number_format($item['price'], 2); ?></p>
                         </div>
+                    </div>
                     </div>
                 </div>
                 <?php endforeach; ?>

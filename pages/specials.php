@@ -1,11 +1,18 @@
 <?php
 session_start();
+include("../dataBaseConnection.php");
+
+$sql = "SELECT * FROM promotions";
+$result = mysqli_query($conn,$sql);
+
 ?>
+
 
 <html>
   <head>
     <title>The Gallery Cafe - Specials</title>
     <link rel="stylesheet" href="../CSS/specials.css" />
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
   </head>
   <body>
     <header>
@@ -26,45 +33,19 @@ session_start();
         seasonal and fresh offerings.
       </p>
       <div class="img">
-        <div class="inside">
-          <h2>Truffle Mushroom Risotto</h2>
-          <img src="../img/Truffle Mushroom Risotto.png" alt="" class="imgAll" />
-
-          <p>
-            Creamy risotto made with aromatic truffle oil and sautéed mushrooms,
-            topped with Parmesan cheese.
-          </p>
+      
+      <?php
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<div class='inside'>";
+                echo "<h2>" . htmlspecialchars($row['name']) . "</h2>";
+                echo "<img src='data:image/jpeg;base64," . base64_encode($row['image']) . "' class='imgAll' >";
+                echo "<p>" . htmlspecialchars($row['description']) . "</p>";
+                echo "</div>";
+            }
+            ?>
+        
         </div>
-        <div class="inside">
-          <h2>Avocado Toast</h2>
-          <img src="../img/Avocado Toast.png" alt="" class="imgAll" />
-
-          <p>
-            Slices of toasted bread topped with mashed avocado, cherry tomatoes,
-            feta cheese, and a drizzle of olive oil.
-          </p>
-        </div>
-      </div>
-      <div class="img">
-        <div class="inside">
-          <h2>Smoked Salmon Bagel</h2>
-          <img src="../img/Smoked Salmon Bagel.png" alt="" class="imgAll" />
-
-          <p>
-            A toasted bagel spread with cream cheese, topped with smoked salmon,
-            capers, red onions, and fresh dill.
-          </p>
-        </div>
-        <div class="inside">
-          <h2>Quinoa Salad</h2>
-          <img src="../img/Quinoa Salad.png" alt="" class="imgAll" />
-
-          <p style="text-align: center">
-            A refreshing salad with quinoa, mixed greens, roasted vegetables,
-            feta cheese, and a lemon vinaigrette.
-          </p>
-        </div>
-      </div>
+       
     </main>
     <hr width="100%" size="2" noshade color="orange" style="margin-top: 10%" />
     <div id="contact">

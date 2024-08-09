@@ -7,6 +7,7 @@ session_start();
 <head>
     <title>The Gallery Cafe - Menu</title>
     <link rel="stylesheet" href="../CSS/SandwichesandWraps.css">
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -24,41 +25,41 @@ session_start();
                 $password = "";
                 $dbname = "gallery_cafe";
 
-                // Create connection
+               
                 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-                // Check connection
+                
                 if (!$conn) {
                     die("Connection failed: " . mysqli_connect_error());
                 }
 
-                // Retrieve menu data
+                
                 $sql = "SELECT id, name, description, image, price FROM menu_item WHERE category_name = 'Sandwiches and Wraps' && menu_id = 1";
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
-                    // Output data of each row
+                    
                     while($row = mysqli_fetch_assoc($result)) {
                         echo "<div class='dis'>";
                         echo "<div>";
                         echo "<h2 class='h2'>" . htmlspecialchars($row["name"]) . "</h2>";
                         
-                        // Check if image data is present
+                        
                         if ($row['image']) {
                             echo '<img src="data:image/jpeg;base64,' . base64_encode($row['image']) . '" alt="" class="image" />';
                         }
-
-                        // Form for adding item to cart
+                
+                       
                         echo "<form action='add_to_cart.php' method='POST'>";
                         echo "<input type='hidden' name='item_id' value='" . htmlspecialchars($row['id']) . "'>";
                         echo "<input type='hidden' name='item_name' value='" . htmlspecialchars($row['name']) . "'>";
                         echo "<input type='hidden' name='price' value='" . htmlspecialchars($row['price']) . "'>";
                         echo "<button type='submit' class='add'>Add To Cart</button>";
                         echo "</form>";
-
+                
                         echo "<div>";
                         echo "<p>" . htmlspecialchars($row["description"]) . "</p>";
-                        echo "<p><strong>Price: </strong>$" . number_format($row["price"], 2) . "</p>"; // Display price with 2 decimal places
+                        echo "<p style='margin-top:110px;'><strong>Price: </strong>$" . number_format($row["price"], 2) . "</p>"; // Display price with 2 decimal places
                         echo "</div>";
                         echo "</div>";
                         echo "</div>";
@@ -66,6 +67,7 @@ session_start();
                 } else {
                     echo "No items found.";
                 }
+                
 
                 mysqli_close($conn);
                 ?>
@@ -76,10 +78,10 @@ session_start();
     <div id="contact">
         <table>
             <tr>
-                <th><img src="./img/address.png" alt="" /></th>
-                <th><img src="./img/Email.png" alt="" /></th>
-                <th><img src="./img/phone.png" alt="" /></th>
-                <th><img src="./img/icons8-time-machine-100.png" alt="" /></th>
+                <th><img src="../img/address.png" alt="" /></th>
+                <th><img src="../img/Email.png" alt="" /></th>
+                <th><img src="../img/phone.png" alt="" /></th>
+                <th><img src="../img/icons8-time-machine-100.png" alt="" /></th>
             </tr>
             <tr style="text-align: center">
                 <td><h2>Address</h2></td>

@@ -1,35 +1,32 @@
 <?php
-// Database connection parameters
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "gallery_cafe";
 
-// Create connection
+
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// Check connection
+
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get form inputs
+   
     $item_name = mysqli_real_escape_string($conn, $_POST['item_name']);
     $item_description = mysqli_real_escape_string($conn, $_POST['item_description']);
     $item_price = mysqli_real_escape_string($conn, $_POST['item_price']);
     $item_category = mysqli_real_escape_string($conn, $_POST['item_category']);
     $menu_id = mysqli_real_escape_string($conn, $_POST['menu_id']);
 
-    // Handle file upload
+
     if (!empty($_FILES['item_image']['tmp_name'])) {
         $image = $_FILES['item_image']['tmp_name'];
        $imgContent = addslashes(file_get_contents($image));
            
         }
 
-    // Prepare SQL query
     $sql = "INSERT INTO menu_item (name, description, price, category_name, image, menu_id) 
             VALUES ('$item_name', '$item_description', '$item_price', '$item_category', '$imgContent', '$menu_id')";
 
@@ -47,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
     <title>Add Menu Item</title>
     <link rel="stylesheet" href="../CSS/add_menu.css">
 </head>
@@ -55,15 +53,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <aside>
             <h2>Admin Dashboard</h2>
             <ul>
-                <li><a href="./Home.php">Home</a></li>
-                <li><a href="./dashbord.php">Dashboard</a></li>
-                <li><a href="./profile.php">Profile</a></li>
-                <li><a href="./add_user.php">Users</a></li>
-                <li><a href="#">Manage Menu</a></li>
-                <li><a href="./admin_view_reservations.php">Reservations</a></li>
-                <li><a href="./promotion.php">Promotions</a></li>
-                <li><a href="./view_feedback.php">Feedback</a></li>
-            </ul>
+                    <li><a href="./Home.php">Home</a></li>
+                    <li><a href="./dashbord.php">Dashboard</a></li>
+                    <li><a href="./profile.php">Profile</a></li>
+                    <li><a href="./add_user.php">Users</a></li>
+                    <li><a href="./add_menu.php">Manage Menu</a></li>
+                    <li><a href="./manage_menu_items.php">Delete Menu Items</a></li>
+                    <li><a href="./admin_view_reservations.php">Reservations</a></li>
+                    <li><a href="./promotion.php">Promotions</a></li>
+                    <li><a href="./view_feedback.php">Feedback</a></li>
+                </ul>
         </aside>
         <main>
             <div class="add-menu-container">
@@ -87,21 +86,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <option value="sandwiches-wraps">Sandwiches & Wraps</option>
                         <option value="Ceylon Tea">Ceylon tea</option>
                         <option value="Pastries and Breads">Pastries and Breads</option>
+
+                        <option value="Main Dishes">Main Dishes</option>
+                        <option value="Desserts">Desserts</option>
+                        <option value="Traditional Beverages">Traditional Beverages</option>
+                        <option value="Breakfast">Breakfast Items</option>
+                        <option value="Main Dishes">Main Dishes</option>
+                        
                     </select>
 
                     <label for="menu_id">Menu ID:</label>
                     <select id="menu_id" name="menu_id" required>
                         <option value="">Select Menu ID</option>
                         <option value="1">Favourite Dishes</option>
-                        <option value="2">Pastries</option>
-                        <option value="3">Cold Beverages</option>
-                        <option value="4">Sandwiches & Wraps</option>
-                        <option value="5">Ceylon Tea</option>
-                        <option value="6">Pastries and Breads</option>
+                        <option value="2">Sri Lankan Cafe Delights</option>
+                        <option value="3">Chinese Cafe Favorites</option>
                     </select>
 
                     <label for="item-image">Upload Image:</label>
-                    <input type="file" id="item-image" name="item_image" accept="image/*">
+                    <input type="file" id="item-image" name="item_image" accept="image/*" required>
 
                     <button type="submit" class="submit-btn">Add Item</button>
                 </form>

@@ -8,7 +8,7 @@
     0,
     0,
     0.5
-  ); /* Optional: Background for better readability */
+  );
 }
 
 .topnav .nav-items {
@@ -45,14 +45,14 @@
 }
 
 .topnav i {
-  font-size: 20px; /* Adjust size */
-  vertical-align: middle; /* Align with text */
-  margin-left: 10px; /* Space between icon and text */
-  color: whitesmoke; /* Icon color */
+  font-size: 20px;
+  vertical-align: middle; 
+  margin-left: 10px; 
+  color: whitesmoke;
 }
 
 .topnav i:hover {
-  color: whitesmoke; /* Color on hover */
+  color: whitesmoke; 
 }
 
 header {
@@ -212,23 +212,3 @@ td {
 body {
   background-color: black;
 }
-/* .alert {
-  padding: 15px;
-  margin: 10px 0;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  width: 90%;
-  margin: 10px auto;
-  text-align: center;
-  font-size: 18px;
-}
-.alert.success {
-  color: #4CAF50;
-  background-color: #DFF2BF;
-  border-color: #B2D8B2;
-}
-.alert.error {
-  color: #F44336;
-  background-color: #FFBABA;
-  border-color: #FF5252;
-} */

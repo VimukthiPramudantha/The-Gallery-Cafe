@@ -7,21 +7,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = "";
     $dbname = "gallery_cafe";
 
-    // Create connection
+   
     $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-    // Check connection
+  
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    // Sanitize and validate input
+    
     $num_of_people = mysqli_real_escape_string($conn, $_POST['People']);
     $date = mysqli_real_escape_string($conn, $_POST['Date']);
     $time = mysqli_real_escape_string($conn, $_POST['Time']);
     $table_no = mysqli_real_escape_string($conn, $_POST['table_no']);
 
-    // Prepare and execute SQL statement
+   
     $sql = "INSERT INTO reservations (table_id, num_of_people, reservation_date, reservation_time) VALUES ('$table_no', '$num_of_people', '$date', '$time')";
 
     if (mysqli_query($conn, $sql)) {
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>showAlert('Error: " . mysqli_error($conn) . "', 'error');</script>";
     }
 
-    // Close the connection
+    
     mysqli_close($conn);
 }
 ?>
@@ -43,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
     <title>The Gallery Cafe - Reservations</title>
     <link rel="stylesheet" href="../CSS/reservations.css">
     <script>

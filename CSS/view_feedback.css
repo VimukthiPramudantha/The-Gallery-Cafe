@@ -1,4 +1,3 @@
-/* view-feedback.css */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -7,39 +6,6 @@ body {
     min-height: 100vh;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: #333;
-    color: #fff;
-    width: 100%;
-}
-
-header .logo {
-    font-size: 1.5rem;
-}
-aside h2{
-    font-family: Georgia, serif;
-    font-size: 23px;
-}
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-    margin: 0;
-    padding: 0;
-}
-
-header nav ul li {
-    display: inline;
-}
-
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
 
 .container {
     display: flex;
@@ -47,28 +13,39 @@ header nav ul li a {
 }
 
 aside {
-    width: 200px;
-    background-color: #f4f4f4;
-    padding: 1rem;
-    position: fixed;
-    top: 70px; /* Adjust based on the header height */
+    top: 0px; 
     bottom: 0;
     overflow-y: auto;
+    width: 225px;
+    background-color: black;
+    color: orange;
+    padding: 20px;
+    position: fixed;
+    height: 100vh;
+}
+aside ul li a:hover {
+    background-color: #34495e;
+    color: white;
 }
 
 aside ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    font-family: Serif;
+    font-size: 22px;
 }
-
+aside h2{
+    font-family: Georgia, serif;
+    font-size: 23px;
+}
 aside ul li {
     margin-bottom: 1rem;
 }
 
 aside ul li a {
     text-decoration: none;
-    color: #333;
+    color: whitesmoke;
     display: block;
     padding: 0.5rem;
     border-radius: 4px;
@@ -80,10 +57,10 @@ aside ul li a.active {
 }
 
 main {
-    margin-left: 220px; /* Adjust based on the sidebar width */
-    padding: 2rem;
+    margin-left: 220px;
     flex: 1;
 }
+
 
 .feedback-container {
     max-width: 1000px;
@@ -92,6 +69,7 @@ main {
     padding: 2rem;
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-left: 31px;
 }
 
 .feedback-container h1 {

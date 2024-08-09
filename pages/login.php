@@ -1,35 +1,35 @@
 <?php
 session_start();
-// Database connection
+
 include("../dataBaseConnection.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
 
-    // Prepare the SQL statement
+   
     $sql = "SELECT id, firstName, lastName, username, role, password FROM users WHERE username = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "s", $username);
 
-    // Execute the statement
+    
     mysqli_stmt_execute($stmt);
 
-    // Bind result variables
+   
     mysqli_stmt_bind_result($stmt, $id, $firstName, $lastName, $username, $role, $hashed_password );
 
-    // Fetch the results
+   
     if (mysqli_stmt_fetch($stmt)) {
-        // Verify password
+        
         if (password_verify($password, $hashed_password)) {
-            // Start the session and store user information
+           
             $_SESSION['user_id'] = $id;
             $_SESSION['username'] = $username;
             $_SESSION['firstName'] = $firstName;
             $_SESSION['lastName'] = $lastName;
             $_SESSION['role'] = $role;
 
-            // Redirect to a logged-in page
+            
             header("Location: ./Home.php");
             exit;
         } else {
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "No user found with that username.";
     }
 
-    // Close statement
+  
     mysqli_stmt_close($stmt);
 }
 
@@ -51,8 +51,13 @@ mysqli_close($conn);
     <title>The Gallery Cafe - Login</title>
     <link rel="stylesheet" href="../CSS/login.css" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
+    
 </head>
 <body>
+    <div class="homeButton">
+        <a href="./Home.php"><button onclick="window.location.href='../index/Home.html'" class="btn">Home</button></a>
+    </div>
     <div class="wrapper">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <h1>Login</h1>

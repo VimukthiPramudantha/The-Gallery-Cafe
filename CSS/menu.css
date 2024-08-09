@@ -8,7 +8,7 @@
     0,
     0,
     0.5
-  ); /* Optional: Background for better readability */
+  ); 
 }
 
 .topnav .nav-items {
@@ -45,14 +45,14 @@
 }
 
 .topnav i {
-  font-size: 20px; /* Adjust size */
-  vertical-align: middle; /* Align with text */
-  margin-left: 10px; /* Space between icon and text */
-  color: whitesmoke; /* Icon color */
+  font-size: 20px;
+  vertical-align: middle; 
+  margin-left: 10px; 
+  color: whitesmoke; 
 }
 
 .topnav i:hover {
-  color: whitesmoke; /* Color on hover */
+  color: whitesmoke; 
 }
 
 header {
@@ -184,10 +184,10 @@ p{
   position: absolute; 
   top: 50%; 
   left: 50%;
-  transform: translate(-50%, -50%) scale(0); /* Start with text hidden and not scaled */
+  transform: translate(-50%, -50%) scale(0); 
   color: orange; 
   font-size: 24px;
-  background: rgba(0, 0, 0, 0.5); /* Optional: add background for readability */
+  background: rgba(0, 0, 0, 0.5); 
   padding: 10px; 
   border-radius: 5px; 
   text-align: center;
@@ -215,7 +215,3 @@ p{
   float: right;
 }
 
-.header:hover {
-  background-color: #c0392b;
-  width: 100px;
-}

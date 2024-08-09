@@ -7,7 +7,7 @@
         <?php endif  ?>
         <?php if ( isset($_SESSION['role']) ): ?>
           <a href="/" class="navbar login-button">
-          <?php echo($_SESSION['username']) ?><i class="fas fa-user-lock"></i>
+          <?php echo($_SESSION['username']) ?>
           </a>
         <?php endif  ?>
 

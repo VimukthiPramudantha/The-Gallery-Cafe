@@ -8,7 +8,7 @@
     0,
     0,
     0.5
-  ); /* Optional: Background for better readability */
+  ); 
 }
 
 .topnav .nav-items {
@@ -28,7 +28,7 @@
 }
 
 .topnav .nav-items a.active {
-  color: white;
+  color: orange;
 }
 
 .topnav .login-button {
@@ -36,7 +36,7 @@
   border-radius: 5px;
   padding: 10px 15px;
   font-size: 17px;
-  color: whitesmoke;
+  color: black;
   text-decoration: none;
 }
 
@@ -45,12 +45,12 @@
 }
 
 .topnav i {
-  font-size: 20px; /* Adjust size */
-  vertical-align: middle; /* Align with text */
-  margin-left: 10px; /* Space between icon and text */
-  color: whitesmoke; /* Icon color */
+  font-size: 20px;
+  vertical-align: middle;
+  margin-left: 10px;
+  color: whitesmoke; 
 }
 
 .topnav i:hover {
-  color: whitesmoke; /* Color on hover */
+  color: whitesmoke; 
 }

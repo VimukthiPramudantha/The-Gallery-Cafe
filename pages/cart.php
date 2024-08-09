@@ -1,28 +1,27 @@
 <?php
 session_start();
-include('../dataBaseConnection.php'); // Include your database connection
+include('../dataBaseConnection.php'); 
 
-// Initialize variables
+
 $total_items = 0;
 $total_price = 0;
 
-// Check if user is logged in
+
 if (!isset($_SESSION['user_id'])) {
     die("You must be logged in to view the cart.");
 }
 
 $user_id = $_SESSION['user_id'];
 
-// Retrieve cart data from database
 $sql = "SELECT mi.id AS item_id, mi.name, mi.price, ci.quantity, ci.item_name
         FROM cart ci
         JOIN menu_item mi ON ci.item_name = mi.name
-        WHERE ci.user_id = $user_id"; // Directly use the variable in the SQL query
+        WHERE ci.user_id = $user_id"; 
 
 $result = mysqli_query($conn, $sql);
 
 if (!$result) {
-    die("Query failed: " . mysqli_error($conn)); // Error handling
+    die("Query failed: " . mysqli_error($conn)); 
 }
 
 $cart_items = [];
@@ -30,7 +29,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $cart_items[] = $row;
 }
 
-// Close the database connection
+
 mysqli_close($conn);
 ?>
 
@@ -41,6 +40,7 @@ mysqli_close($conn);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shopping Cart</title>
     <link rel="stylesheet" href="../CSS/styles.css" />
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../CSS/navbar.css">
 </head>
 <body>

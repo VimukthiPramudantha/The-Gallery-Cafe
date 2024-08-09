@@ -1,28 +1,26 @@
 <?php
 session_start();
 
-// Database connection details
+
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "gallery_cafe";
 
-// Create connection
+
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// Check connection
+
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Check if admin ID is set in the session
 if (!isset($_SESSION['user_id'])) {
     die("Admin ID not found in session.");
 }
 
 $admin_id =  $_SESSION['user_id'];
 
-// Fetch admin profile details
 $sql = "SELECT * FROM users WHERE id=$admin_id";
 $result = mysqli_query($conn, $sql);
 
@@ -41,6 +39,7 @@ mysqli_close($conn);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
     <title>Admin Profile</title>
     <link rel="stylesheet" href="../CSS/profile.css">
 </head>
@@ -55,16 +54,17 @@ mysqli_close($conn);
     <div class="container">
         <aside>
         <h2 style="color: orange;">Admin Dashboard</h2>
-            <ul>
-            <li><a href="./Home.php">Home</a></li>
-                <li><a href="./dashbord.php">Dashboard</a></li>
-                <li><a href="">Profile</a></li>
-                <li><a href="./add_user.php">Users</a></li>
-                <li><a href="./add_menu.php">Manage Menu</a></li>
-                <li><a href="./admin_view_reservations.php">Reservations</a></li>
-                <li><a href="./promotion.php">Promotions</a></li>
-                <li><a href="./view_feedback.php">Feedback</a></li>
-            </ul>
+        <ul>
+                    <li><a href="./Home.php">Home</a></li>
+                    <li><a href="./dashbord.php">Dashboard</a></li>
+                    <li><a href="./profile.php">Profile</a></li>
+                    <li><a href="./add_user.php">Users</a></li>
+                    <li><a href="./add_menu.php">Manage Menu</a></li>
+                    <li><a href="./manage_menu_items.php">Delete Menu Items</a></li>
+                    <li><a href="./admin_view_reservations.php">Reservations</a></li>
+                    <li><a href="./promotion.php">Promotions</a></li>
+                    <li><a href="./view_feedback.php">Feedback</a></li>
+                </ul>
         </aside>
         <main>
             <div class="profile-header">

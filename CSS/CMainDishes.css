@@ -8,7 +8,7 @@
     0,
     0,
     0.5
-  ); /* Optional: Background for better readability */
+  ); 
 }
 
 .topnav .nav-items {
@@ -45,14 +45,14 @@
 }
 
 .topnav i {
-  font-size: 20px; /* Adjust size */
-  vertical-align: middle; /* Align with text */
-  margin-left: 10px; /* Space between icon and text */
-  color: whitesmoke; /* Icon color */
+  font-size: 20px; 
+  vertical-align: middle; 
+  margin-left: 10px; 
+  color: whitesmoke; 
 }
 
 .topnav i:hover {
-  color: whitesmoke; /* Color on hover */
+  color: whitesmoke; 
 }
 
 header {
@@ -62,7 +62,7 @@ header {
 }
 header::before {
   content: "";
-  background-image: url(./img/pablo-merchan-montes-Orz90t6o0e4-unsplash.jpg);
+  background-image: url(../img/pablo-merchan-montes-Orz90t6o0e4-unsplash.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
@@ -93,7 +93,7 @@ body {
 .dis {
   background-color: white;
   width: 204px;
-  height: 280px;
+  height: 283px;
   margin-left: 50px;
   transition: 0.5s;
   border-radius: 25px;

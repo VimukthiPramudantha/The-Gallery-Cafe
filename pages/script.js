@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Function to remove an item from the cart
+    
     function removeItem(itemId) {
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'remove_from_cart.php', true); // Adjust URL if needed
+        xhr.open('POST', 'remove_from_cart.php', true); 
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         
         xhr.onload = function() {
             if (xhr.status === 200) {
-                // Reload the page to reflect the changes
+                
                 location.reload();
             } else {
                 alert('An error occurred while removing the item. Please try again.');
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         xhr.send('item_id=' + encodeURIComponent(itemId));
     }
 
-    // Event delegation for remove buttons
+   
     document.getElementById('cart-items').addEventListener('click', function(event) {
         if (event.target.classList.contains('remove')) {
             const itemId = event.target.getAttribute('data-id');

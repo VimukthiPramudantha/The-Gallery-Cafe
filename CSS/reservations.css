@@ -8,7 +8,7 @@
     0,
     0,
     0.5
-  ); /* Optional: Background for better readability */
+  ); 
 }
 
 .topnav .nav-items {
@@ -45,14 +45,14 @@
 }
 
 .topnav i {
-  font-size: 20px; /* Adjust size */
-  vertical-align: middle; /* Align with text */
-  margin-left: 10px; /* Space between icon and text */
-  color: whitesmoke; /* Icon color */
+  font-size: 20px;
+  vertical-align: middle; 
+  margin-left: 10px;
+  color: whitesmoke; 
 }
 
 .topnav i:hover {
-  color: whitesmoke; /* Color on hover */
+  color: whitesmoke; 
 }
 
 header {

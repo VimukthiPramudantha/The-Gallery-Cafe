@@ -48,7 +48,7 @@ if (mysqli_num_rows($result) > 0) {
     }
 }
 
-// Close the connection
+
 mysqli_close($conn);
 ?>
 
@@ -57,6 +57,7 @@ mysqli_close($conn);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
     <title>View Reservations</title>
     <link rel="stylesheet" href="../CSS/view_reservations.css">
 </head>
